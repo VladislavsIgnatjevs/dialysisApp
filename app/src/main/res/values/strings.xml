@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RenalDyalisys Login and Registration</string>
+    <string name="app_name">RenalDyalisys App</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
@@ -10,5 +10,45 @@
     <string name="welcome">Welcome</string>
     <string name="btn_logout">LOGOUT</string>
     <string name="name">Fullname</string>
+
+    <string name="essential_contacts">Essential Contacts</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="mainmenu">Main Menu</string>
+
+    <!-- Essential contacts activity-->
+    <string name="contacts_heading">My Essential Contacts</string>
+
+    <string name="consultant_heading">My Consultant</string>
+
+    <string name="consultant_name">Consultant name</string>
+    <string name="consultant_number">consultant number</string>
+    <string name="consultant_location">consultant location</string>
+
+    <string name="dietitian_heading">My Dietitan</string>
+
+    <string name="dietitian_name">Dietitian name</string>
+    <string name="dietitian_number">Dietitian number</string>
+    <string name="dietitian_location">dietitian location</string>
+
+    <string name="doctor_heading">My Doctor</string>
+
+    <string name="doctor_name">Fullname</string>
+    <string name="doctor_number">Fullname</string>
+    <string name="doctor_location">Fullname</string>
+
+    <string name="ward_heading">My Ward</string>
+
+    <string name="ward_name">Fullname</string>
+    <string name="ward_number">Fullname</string>
+    <string name="ward_location">Fullname</string>
+
+
+
+    <!-- Calendar activity-->
+    <!-- FAQ activity-->
+    <!-- Treatment helper activity-->
+    <!-- Healthcheck activity-->
+
 
 </resources>

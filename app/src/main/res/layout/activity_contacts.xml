@@ -1,13 +1,193 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="vladislavsignatjevs.renaldyalisys.Contacts">
+    tools:context="${relativePackage}.${activityClass}" >
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
 
+
+<!--heading-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/contacts_heading"
+            android:textSize="30dp" />
+        <!--consultant-->
+        <TextView
+            android:text="@string/consultant_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="24sp" />
+        <!-- name-->
+        <TextView
+            android:id="@+id/consultant_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
+
+        <!-- number-->
+        <TextView
+            android:id="@+id/consultant_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_call_black_18dp"/>
+        <!-- location-->
+        <TextView
+            android:id="@+id/consultant_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_place_black_18dp"/>
+        <!--dietitian-->
+        <TextView
+            android:text="@string/dietitian_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="24sp" />
+        <!-- name-->
+        <TextView
+            android:id="@+id/dietitian_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
+        <!-- number-->
+        <TextView
+            android:id="@+id/diatitian_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_call_black_18dp"/>
+        <!-- location-->
+        <TextView
+            android:id="@+id/dietitian_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_place_black_18dp"/>
+        <!--doctor-->
+        <TextView
+            android:text="@string/doctor_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="24sp" />
+        <!-- name-->
+        <TextView
+            android:id="@+id/doctor_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
+        <!-- number-->
+        <TextView
+            android:id="@+id/doctor_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_call_black_18dp"/>
+        <!-- location-->
+        <TextView
+            android:id="@+id/doctor_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_place_black_18dp"/>
+        <!-- ward-->
+        <TextView
+            android:text="@string/ward_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="24sp" />
+        <!-- name-->
+        <TextView
+            android:id="@+id/ward_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_local_hospital_black_18dp"/>
+        <!-- number-->
+        <TextView
+            android:id="@+id/ward_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_call_black_18dp"/>
+        <!-- location-->
+        <TextView
+            android:id="@+id/ward_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textColor="@color/lbl_name"
+            android:textSize="13sp"
+            android:layout_gravity="left"
+            android:drawableLeft="@drawable/ic_place_black_18dp"/>
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:background="@color/btn_logut_bg"
+            android:text="@string/btn_logout"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

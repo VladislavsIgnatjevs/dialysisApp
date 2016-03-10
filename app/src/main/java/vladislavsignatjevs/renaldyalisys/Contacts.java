@@ -1,13 +1,213 @@
 package vladislavsignatjevs.renaldyalisys;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Activity;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class Contacts extends AppCompatActivity {
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import vladislavsignatjevs.renaldyalisys.R;
+import vladislavsignatjevs.renaldyalisys.app.AppConfig;
+import vladislavsignatjevs.renaldyalisys.app.AppController;
+import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
+import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
+
+public class Contacts extends Activity {
+
+    private TextView consultantsName;
+    private TextView consultantsNumber;
+    private TextView consultantsLocation;
+    private TextView dietitiansName;
+    private TextView dietitiansNumber;
+    private TextView dietitiansLocation;
+    private TextView doctorsName;
+    private TextView doctorsNumber;
+    private TextView doctorsLocation;
+    private TextView wardsName;
+    private TextView wardsNumber;
+    private TextView wardsLocation;
+
+    private ProgressDialog pDialog;
+    private SQLiteHandler db;
+    private SessionManager session;
+    private static final String TAG = Contacts.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contacts);
+
+        //progress dialogue
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
+        consultantsName = (TextView) findViewById(R.id.consultant_name);
+        consultantsNumber = (TextView) findViewById(R.id.consultant_number);
+        consultantsLocation = (TextView) findViewById(R.id.consultant_location);
+
+        dietitiansName = (TextView) findViewById(R.id.dietitian_name);
+        dietitiansNumber = (TextView) findViewById(R.id.diatitian_number);
+        dietitiansLocation = (TextView) findViewById(R.id.dietitian_location);
+
+        doctorsName = (TextView) findViewById(R.id.doctor_name);
+        doctorsNumber = (TextView) findViewById(R.id.doctor_number);
+        doctorsLocation = (TextView) findViewById(R.id.doctor_location);
+
+        wardsName = (TextView) findViewById(R.id.ward_name);
+        wardsNumber = (TextView) findViewById(R.id.ward_number);
+        wardsLocation = (TextView) findViewById(R.id.ward_location);
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        // Fetching user details from sqlite
+        HashMap<String, String> contacts = db.getUserDetails();
+
+
+
+        String consName = contacts.get("consultant_name");
+        String consNumber = contacts.get("consultant_number");
+        String consLocation = contacts.get("consultant_location");
+        String dietName = contacts.get("dietitian_name");
+        String dietNumber = contacts.get("dietitian_number");
+        String dietLocation = contacts.get("dietitian_location");
+        String docName = contacts.get("doctor_name");
+        String docNumber = contacts.get("doctor_number");
+        String docLocation = contacts.get("doctor_location");
+        String wdName = contacts.get("ward_name");
+        String wdNumber = contacts.get("ward_number");
+        String wdLocation = contacts.get("ward_location");
+        // Displaying contacts on the screen
+
+        consultantsName.setText(consName);
+        consultantsNumber.setText(consNumber);
+        consultantsLocation.setText(consLocation);
+        dietitiansName.setText(dietName);
+        dietitiansNumber.setText(dietNumber);
+        dietitiansLocation.setText(dietLocation);
+        doctorsName.setText(docName);
+        doctorsNumber.setText(docNumber);
+        doctorsLocation.setText(docLocation);
+        wardsName.setText(wdName);
+        wardsNumber.setText(wdNumber);
+        wardsLocation.setText(wdLocation);
+
     }
+
+    /**
+     * request user contacts via post
+     *
+     * */
+    private void requestEssentialContacts(final String email)
+        {
+        // Tag used to cancel the request
+        String tag_string_req = "req_contacts";
+
+        pDialog.setMessage("Getting essential contacts ...");
+        showDialog();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_REGISTER, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Request Contacts response: " + response.toString());
+                hideDialog();
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (error) {
+
+
+                        // Error occurred in contacts retrieval. Get the error
+                        // message
+                        String errorMsg = jObj.getString("error_msg");
+                        Toast.makeText(getApplicationContext(),
+                                errorMsg, Toast.LENGTH_LONG).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Contacts retrieval error: " + error.getMessage());
+                Toast.makeText(getApplicationContext(),
+                        error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting params to register url
+                Map<String, String> params = new HashMap<String, String>();
+                //list of parameters to the hash map
+                params.put("email", email);
+
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+
+
+
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(Contacts.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
+
 }
