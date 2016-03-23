@@ -42,6 +42,31 @@
             android:name=".Contacts"
             android:label="@string/essential_contacts"
             android:launchMode="singleTop" />
+        <activity
+            android:name=".MainMenu"
+            android:label="@string/mainmenu"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Calendar"
+            android:label="@string/calendar"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Profile"
+            android:label="@string/profile"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Healthcheck"
+            android:label="@string/healthcheck"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".Treatment"
+            android:label="@string/treatment"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".FAQ"
+            android:label="@string/faq"
+            android:launchMode="singleTop" />
+
     </application>
 
 </manifest>

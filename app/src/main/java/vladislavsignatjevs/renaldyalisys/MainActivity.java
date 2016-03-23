@@ -67,15 +67,14 @@ public class MainActivity extends Activity {
 	 * preferences Clears the user data from sqlite users table
 	 * */
 	private void logoutUser() {
-	//	session.setLogin(false);
+		session.setLogin(false);
 
-	//	db.deleteUsers();
+		db.deleteUsers();
 
 		// Launching the login activity
-	//	Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-	//	startActivity(intent);
-	//	finish();
-		Intent intent = new Intent(MainActivity.this, Contacts.class);
-			startActivity(intent);
+		Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+		startActivity(intent);
+		finish();
+
 	}
 }

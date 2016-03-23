@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
 
@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
         <!-- location-->
@@ -60,7 +60,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
         <!--dietitian-->
@@ -78,7 +78,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
         <!-- number-->
@@ -88,7 +88,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
         <!-- location-->
@@ -98,7 +98,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
         <!--doctor-->
@@ -116,7 +116,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
         <!-- number-->
@@ -126,7 +126,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
         <!-- location-->
@@ -136,7 +136,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
         <!-- ward-->
@@ -154,7 +154,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_local_hospital_black_18dp"/>
         <!-- number-->
@@ -164,7 +164,7 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
         <!-- location-->
@@ -174,19 +174,10 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="13sp"
+            android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
-            android:background="@color/btn_logut_bg"
-            android:text="@string/btn_logout"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="15sp" />
+
 
     </LinearLayout>
     </ScrollView>

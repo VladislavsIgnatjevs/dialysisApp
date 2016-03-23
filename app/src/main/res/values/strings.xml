@@ -15,6 +15,11 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="mainmenu">Main Menu</string>
+    <string name="calendar">Calendar</string>
+    <string name="faq">Frequently Asked Questions</string>
+    <string name="healthcheck">Check health</string>
+    <string name="treatment">Treatment helper</string>
+    <string name="profile">My Details</string>
 
     <!-- Essential contacts activity-->
     <string name="contacts_heading">My Essential Contacts</string>

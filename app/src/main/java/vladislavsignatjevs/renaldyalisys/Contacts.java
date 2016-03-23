@@ -28,7 +28,9 @@ import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
 public class Contacts extends Activity {
-
+    String savedResponse;
+    Map<String,String> contacts = new HashMap<String,String>();
+    String consName,consNumber,consLocation,dietName,dietNumber,dietLocation,docName,docNumber,docLocation,wdName,wdNumber,wdLocation;
     private TextView consultantsName;
     private TextView consultantsNumber;
     private TextView consultantsLocation;
@@ -81,37 +83,18 @@ public class Contacts extends Activity {
             logoutUser();
         }
 
+
         // Fetching user details from sqlite
-        HashMap<String, String> contacts = db.getUserDetails();
+        HashMap<String, String> userData = db.getUserDetails();
+
+        Log.d(TAG, "Request UID: " + userData.get("uid").toString());
+        requestEssentialContacts(userData.get("uid"));
 
 
 
-        String consName = contacts.get("consultant_name");
-        String consNumber = contacts.get("consultant_number");
-        String consLocation = contacts.get("consultant_location");
-        String dietName = contacts.get("dietitian_name");
-        String dietNumber = contacts.get("dietitian_number");
-        String dietLocation = contacts.get("dietitian_location");
-        String docName = contacts.get("doctor_name");
-        String docNumber = contacts.get("doctor_number");
-        String docLocation = contacts.get("doctor_location");
-        String wdName = contacts.get("ward_name");
-        String wdNumber = contacts.get("ward_number");
-        String wdLocation = contacts.get("ward_location");
-        // Displaying contacts on the screen
 
-        consultantsName.setText(consName);
-        consultantsNumber.setText(consNumber);
-        consultantsLocation.setText(consLocation);
-        dietitiansName.setText(dietName);
-        dietitiansNumber.setText(dietNumber);
-        dietitiansLocation.setText(dietLocation);
-        doctorsName.setText(docName);
-        doctorsNumber.setText(docNumber);
-        doctorsLocation.setText(docLocation);
-        wardsName.setText(wdName);
-        wardsNumber.setText(wdNumber);
-        wardsLocation.setText(wdLocation);
+
+
 
     }
 
@@ -128,18 +111,70 @@ public class Contacts extends Activity {
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_REGISTER, new Response.Listener<String>() {
+                AppConfig.CONTACTS_REQUEST, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
                 Log.d(TAG, "Request Contacts response: " + response.toString());
+
+
+
                 hideDialog();
 
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
-                    if (error) {
+                    if (!error) {
+                        //user exists. retrieve contacts
+                        savedResponse =  response.toString();
+                        //removing rubbish from string
+                        savedResponse = savedResponse.replace("\"","");
+                        savedResponse = savedResponse.replace("{","");
+                        savedResponse = savedResponse.replace("}","");
+                        Log.d(TAG, "SAVED RESPONSE NO RUBBISH "+savedResponse );
+                        //split response by "," and put contacts into hashmap contacts
+                        String[] pairs = savedResponse.split(",");
+                        for (int i=0;i<pairs.length;i++) {
+                            String pair = pairs[i];
 
+                            String[] keyValue = pair.split(":");
+
+                            contacts.put(keyValue[0], keyValue[1]);
+                        }
+                        //output hashmap into log
+                        for (Map.Entry entry : contacts.entrySet()){
+                            Log.d(TAG, "key: " +entry.getKey() +" value "+entry.getValue() );
+                        }
+
+                        consName = contacts.get("consultant_name");
+                        consNumber = contacts.get("consultant_number");
+                        consLocation = contacts.get("consultant_location");
+                        dietName = contacts.get("dietitian_name");
+                        dietNumber = contacts.get("dietitian_number");
+                        dietLocation = contacts.get("dietitian_location");
+                        docName = contacts.get("doctor_name");
+                        docNumber = contacts.get("doctor_number");
+                        docLocation = contacts.get("doctor_location");
+                        wdName = contacts.get("ward_name");
+                        wdNumber = contacts.get("ward_number");
+                        wdLocation = contacts.get("ward_location");
+
+                        //  Displaying contacts on the screen
+
+                        consultantsName.setText(" "+consName);
+                        consultantsNumber.setText(" "+consNumber);
+                        consultantsLocation.setText(" "+consLocation);
+                        dietitiansName.setText(" "+dietName);
+                        dietitiansNumber.setText(" "+dietNumber);
+                        dietitiansLocation.setText(" "+dietLocation);
+                        doctorsName.setText(" "+docName);
+                        doctorsNumber.setText(" "+docNumber);
+                        doctorsLocation.setText(" "+docLocation);
+                        wardsName.setText(" "+wdName);
+                        wardsNumber.setText(" "+wdNumber);
+                        wardsLocation.setText(" "+wdLocation);
+                    }
+                      else {
 
                         // Error occurred in contacts retrieval. Get the error
                         // message
