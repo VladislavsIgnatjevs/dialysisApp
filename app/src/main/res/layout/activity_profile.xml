@@ -1,22 +1,125 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="vladislavsignatjevs.renaldyalisys.Profile">
-
-
-    <include layout="@layout/content_profile"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    tools:context="${relativePackage}.${activityClass}" >
+    <ScrollView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:gravity="center"
+        android:layout_marginTop="20dp">
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:orientation="vertical">
 
-        android:src="@android:drawable/ic_dialog_email" />
 
-</android.support.design.widget.CoordinatorLayout>
+            <!--heading-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile"
+                android:textSize="25dp" />
+
+                    <TextView
+                        android:text="@string/profile_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+
+                    <!-- name-->
+                    <TextView
+                        android:id="@+id/patient_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+
+                    <TextView
+                        android:text="@string/profile_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+
+                    <TextView
+                        android:id="@+id/patient_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left"/>
+
+                <!-- dob heading-->
+
+                    <TextView
+                        android:text="@string/profile_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+                    <TextView
+                        android:id="@+id/patient_dob"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left"/>
+
+
+                <!-- allergies-->
+
+                    <TextView
+                        android:text="@string/profile_allergies_true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+                    <TextView
+                        android:id="@+id/patient_allergies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left"/>
+
+                <!-- access type -->
+
+                    <TextView
+                        android:text="@string/profile_access_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left" />
+                    <TextView
+                        android:id="@+id/patient_access_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/lbl_name"
+                        android:textSize="18sp"
+                        android:layout_gravity="left"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -12,6 +12,9 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            debuggable true
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -25,4 +28,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.mcxiaoke.volley:library-aar:1.0.0'
+    compile 'com.squareup:android-times-square:1.6.5@aar'
 }

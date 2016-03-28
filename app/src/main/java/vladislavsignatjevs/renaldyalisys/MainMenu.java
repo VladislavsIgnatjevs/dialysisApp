@@ -42,7 +42,7 @@ public class MainMenu extends AppCompatActivity {
                     case 2: Intent healthcheck = new Intent(MainMenu.this, Healthcheck.class);
                             startActivity(healthcheck);
                             break;
-                    case 3: Intent calendar = new Intent(MainMenu.this, Calendar.class);
+                    case 3: Intent calendar = new Intent(MainMenu.this, CalendarEvents.class);
                             startActivity(calendar);
                             break;
                     case 4: Intent contacts = new Intent(MainMenu.this, Contacts.class);
@@ -91,7 +91,7 @@ public class MainMenu extends AppCompatActivity {
         items.add(new ItemObject("Start Treatment", "one"));
         items.add(new ItemObject("My Details", "two"));
         items.add(new ItemObject("Check", "three"));
-        items.add(new ItemObject("Calendar", "four"));
+        items.add(new ItemObject("CalendarEvents", "four"));
         items.add(new ItemObject("Contacts", "five"));
         items.add(new ItemObject("FaQ", "six"));
         items.add(new ItemObject("Logout", "seven"));
