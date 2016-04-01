@@ -149,15 +149,19 @@ public class Contacts extends Activity {
                         consName = contacts.get("consultant_name");
                         consNumber = contacts.get("consultant_number");
                         consLocation = contacts.get("consultant_location");
+                        consLocation = consLocation.replace("<koma>", ",");
                         dietName = contacts.get("dietitian_name");
                         dietNumber = contacts.get("dietitian_number");
                         dietLocation = contacts.get("dietitian_location");
+                        dietLocation = dietLocation.replace("<koma>", ",");
                         docName = contacts.get("doctor_name");
                         docNumber = contacts.get("doctor_number");
                         docLocation = contacts.get("doctor_location");
+                        docLocation = docLocation.replace("<koma>", ",");
                         wdName = contacts.get("ward_name");
                         wdNumber = contacts.get("ward_number");
                         wdLocation = contacts.get("ward_location");
+                        wdLocation = wdLocation.replace("<koma>",",");
 
                         //  Displaying contacts on the screen
 

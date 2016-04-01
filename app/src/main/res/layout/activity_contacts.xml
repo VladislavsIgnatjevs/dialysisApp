@@ -7,23 +7,27 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="5dp">
     <LinearLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         android:gravity="center"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
 
-<!--heading-->
+        <!--heading-->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/contacts_heading"
-            android:textSize="30dp" />
+            android:textSize="22dp"
+            android:layout_gravity="center"/>
+
+
         <!--consultant-->
         <TextView
             android:text="@string/consultant_heading"
@@ -31,49 +35,104 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="24sp" />
+            android:layout_gravity="center"
+            android:textSize="20sp" />
+
+        <!--table for consultant-->
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:shrinkColumns="1"
+            android:stretchColumns="*"
+            android:id="@+id/contacts_consultant_table">
+            <TableRow>
         <!-- name-->
+         <TextView
+             android:id="@+id/consultant_name_heading"
+             android:text=" Name:"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:padding="10dp"
+             android:textColor="@color/lbl_name"
+             android:textSize="18sp"
+             android:layout_gravity="left"
+             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
         <TextView
             android:id="@+id/consultant_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:textColor="@color/lbl_name"
-            android:textSize="18sp"
-            android:layout_gravity="left"
-            android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
-
+            android:textColor="@color/input_login_hint"
+            android:textSize="16sp"
+            android:layout_gravity="right" />
+            </TableRow>
+        <TableRow>
         <!-- number-->
         <TextView
-            android:id="@+id/consultant_number"
-            android:layout_width="wrap_content"
+            android:id="@+id/consultant_number_heading"
+            android:text=" Phone:"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
+            <TextView
+                android:id="@+id/consultant_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
         <!-- location-->
+            <TextView
+                android:id="@+id/consultant_location_heading"
+                android:text="Location:"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/lbl_name"
+                android:textSize="18sp"
+                android:layout_gravity="left"
+                android:drawableLeft="@drawable/ic_place_black_18dp"/>
         <TextView
             android:id="@+id/consultant_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:textColor="@color/lbl_name"
-            android:textSize="18sp"
-            android:layout_gravity="left"
-            android:drawableLeft="@drawable/ic_place_black_18dp"/>
+            android:textColor="@color/input_login_hint"
+            android:textSize="16sp"
+            android:layout_gravity="right" />
+        </TableRow>
+        </TableLayout>
         <!--dietitian-->
+
         <TextView
             android:text="@string/dietitian_heading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="24sp" />
+            android:layout_gravity="center"
+            android:textSize="20sp" />
+        <!--table for dietitian-->
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:stretchColumns="*"
+            android:shrinkColumns="1"
+            android:id="@+id/contacts_dietitian_table">
+        <TableRow>
         <!-- name-->
         <TextView
-            android:id="@+id/dietitian_name"
+            android:id="@+id/dietitian_name_heading"
+            android:text=" Name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -81,9 +140,20 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
+            <TextView
+                android:id="@+id/dietitian_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
         <!-- number-->
         <TextView
-            android:id="@+id/diatitian_number"
+            android:id="@+id/diatitian_number_heading"
+            android:text=" Phone:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -91,9 +161,21 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
+
+            <TextView
+                android:id="@+id/diatitian_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
         <!-- location-->
         <TextView
-            android:id="@+id/dietitian_location"
+            android:id="@+id/dietitian_location_heading"
+            android:text=" Location:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -101,6 +183,19 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
+
+            <TextView
+                android:id="@+id/dietitian_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+            </TableLayout>
+
+
         <!--doctor-->
         <TextView
             android:text="@string/doctor_heading"
@@ -108,10 +203,21 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
+
+        <!-- table for doctor-->
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:stretchColumns="*"
+            android:shrinkColumns="1"
+            android:id="@+id/contacts_doctor_table">
+        <TableRow>
         <!-- name-->
         <TextView
-            android:id="@+id/doctor_name"
+            android:id="@+id/doctor_name_heading"
+            android:text=" Name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -119,9 +225,20 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_account_circle_black_18dp"/>
-        <!-- number-->
+            <TextView
+                android:id="@+id/doctor_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
+            <!-- number-->
         <TextView
-            android:id="@+id/doctor_number"
+            android:id="@+id/doctor_number_heading"
+            android:text=" Phone:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -129,9 +246,20 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
+            <TextView
+                android:id="@+id/doctor_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right"/>
+        </TableRow>
+        <TableRow>
         <!-- location-->
         <TextView
-            android:id="@+id/doctor_location"
+            android:id="@+id/doctor_location_heading"
+            android:text=" Location:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -139,6 +267,16 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
+            <TextView
+                android:id="@+id/doctor_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="center" />
+        </TableRow>
+        </TableLayout>
         <!-- ward-->
         <TextView
             android:text="@string/ward_heading"
@@ -146,10 +284,21 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/lbl_name"
-            android:textSize="24sp" />
+            android:textSize="20sp" />
+
+        <!-- table for ward-->
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:stretchColumns="*"
+            android:shrinkColumns="1"
+            android:id="@+id/contacts_ward_table">
+        <TableRow>
         <!-- name-->
         <TextView
-            android:id="@+id/ward_name"
+            android:id="@+id/ward_name_heading"
+            android:text=" Name:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -157,9 +306,20 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_local_hospital_black_18dp"/>
+            <TextView
+                android:id="@+id/ward_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
         <!-- number-->
         <TextView
-            android:id="@+id/ward_number"
+            android:id="@+id/ward_number_heading"
+            android:text=" Phone:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -167,9 +327,20 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_call_black_18dp"/>
+            <TextView
+                android:id="@+id/ward_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+        <TableRow>
         <!-- location-->
         <TextView
-            android:id="@+id/ward_location"
+            android:id="@+id/ward_location_heading"
+            android:text=" Location:"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
@@ -177,7 +348,16 @@
             android:textSize="18sp"
             android:layout_gravity="left"
             android:drawableLeft="@drawable/ic_place_black_18dp"/>
-
+            <TextView
+                android:id="@+id/ward_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="@color/input_login_hint"
+                android:textSize="16sp"
+                android:layout_gravity="right" />
+        </TableRow>
+</TableLayout>
 
     </LinearLayout>
     </ScrollView>

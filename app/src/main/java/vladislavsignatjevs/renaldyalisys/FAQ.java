@@ -113,7 +113,7 @@ public class FAQ extends Activity {
                             String pair = pairs[i];
 
                             String[] keyValue = pair.split(":");
-
+                            Log.d(TAG, "keyvalue 0: " +keyValue[0] +" keyvalue1 "+keyValue[1] );
                             faq.put(keyValue[0], keyValue[1]);
                         }
                         //output hashmap into log
@@ -138,7 +138,8 @@ public class FAQ extends Activity {
                             //getting questions from hashmap
                             quest = faq.get("question"+questionCount);
                             ans = faq.get("answer"+questionCount);
-
+                            quest = quest.replace("<koma>",",");
+                            ans = ans.replace("<koma>",",");
                             //output to console for debugging
                             Log.d(TAG, "QUESTION IS  "+quest );
                             Log.d(TAG, "ANSWER IS  "+ans );

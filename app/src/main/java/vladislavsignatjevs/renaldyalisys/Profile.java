@@ -2,11 +2,16 @@ package vladislavsignatjevs.renaldyalisys;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,12 +35,13 @@ import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 public class Profile extends Activity {
     String savedResponse;
     Map<String,String> profile = new HashMap<String,String>();
-    String patName,patID,patDOB,patAllergies,patAccessType;
+    String patName,patID,patDOB,patAllergies,patAccessType,sex;
     private TextView name;
     private TextView patient_id;
     private TextView dob;
     private TextView allergies;
     private TextView access_type;
+    private ImageView profilePic;
 
 
     private ProgressDialog pDialog;
@@ -57,7 +63,7 @@ public class Profile extends Activity {
 
         allergies = (TextView) findViewById(R.id.patient_allergies);
         access_type = (TextView) findViewById(R.id.patient_access_type);
-
+        profilePic = (ImageView) findViewById(R.id.profile_pic);
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -132,14 +138,37 @@ public class Profile extends Activity {
                         patDOB = profile.get("dob");
                         patAllergies = profile.get("allergies");
                         patAccessType = profile.get("access_type");
+                        patAllergies = patAllergies.replace("<koma>",",");
+                        patAccessType = patAccessType.replace("<koma>",",");
+                        //assign gendet to var sex and trim rubbish
+                        sex = profile.get("sex").trim();
+                        Log.d(TAG, "SEX IS :::"+sex);
 
+//                        setting profile pic
+                        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+                        //preventing very large profile pic situation
+                        int maxHeight = display.getHeight()/3;
+                        Log.d(TAG, "max profile pic height :::"+maxHeight);
 
+                        if (sex.equals("m"))
+                        {
+                            profilePic.setImageResource(R.drawable.patient_male);
+                            profilePic.setBackgroundColor(Color.rgb(0, 153, 255));
+                            profilePic.setMaxHeight(maxHeight);
+                        }
+                        if (sex.equals("f"))
+                        {
+                            profilePic.setImageResource(R.drawable.patient_female);
+                            profilePic.setBackgroundColor(Color.rgb(204, 51, 153));
+                            profilePic.setMaxHeight(maxHeight);
+                        }
                         //  Displaying profile on the screen
 
                         name.setText(patName);
                         patient_id.setText(patID);
                         dob.setText(patDOB);
                         allergies.setText(patAllergies);
+
                         access_type.setText(patAccessType);
 
                     }
