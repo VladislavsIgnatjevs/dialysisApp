@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="vladislavsignatjevs.renaldyalisys">
     <uses-sdk
-        android:minSdkVersion="9"
+        android:minSdkVersion="14"
         android:targetSdkVersion="21" />
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
@@ -10,6 +10,8 @@
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
 
     <application
         android:name="vladislavsignatjevs.renaldyalisys.app.AppController"
@@ -50,6 +52,10 @@
             android:launchMode="singleTop" />
         <activity
             android:name=".CalendarEvents"
+            android:label="@string/calendar"
+            android:launchMode="singleTop" />
+        <activity
+            android:name=".DialysisCalendar"
             android:label="@string/calendar"
             android:launchMode="singleTop" />
         <activity

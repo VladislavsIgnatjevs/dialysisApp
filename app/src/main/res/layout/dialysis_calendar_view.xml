@@ -1,51 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true"
-    tools:context="vladislavsignatjevs.renaldyalisys.CalendarEvents"
-    android:orientation="vertical"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    >
-
-    <Spinner android:id="@+id/spinner_calendar"
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:textColor="@color/lbl_name"
-        />
-
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:shrinkColumns="1"
-        android:stretchColumns="*"
-        android:id="@+id/contacts_consultant_table">
-    <TableRow>
-    <Button android:id="@+id/button_add"
-        android:layout_height="wrap_content"
-        android:layout_width="150px"
-        android:text="Add Event"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    <Button android:id="@+id/button_add2"
-        android:layout_height="wrap_content"
-        android:layout_width="150px"
-        android:text="Add Event 2"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    <Button android:id="@+id/button_get_events"
-        android:layout_height="wrap_content"
-        android:layout_width="150px"
-        android:text="Get Events"
-        android:layout_gravity="center"
-        android:gravity="center"
-        />
-    </TableRow>
-    </TableLayout>
+    android:background="@color/lightgray"
+    android:orientation="vertical" >
 
     <LinearLayout
         android:id="@+id/buttonlayout"
@@ -129,7 +87,3 @@
     </GridView>
 
 </LinearLayout>
-
-
-
-
