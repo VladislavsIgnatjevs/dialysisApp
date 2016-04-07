@@ -33,7 +33,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:shrinkColumns="1"
+        android:shrinkColumns="*"
         android:stretchColumns="*"
         android:id="@+id/calendar_events_main_table">
 
@@ -44,7 +44,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:shrinkColumns="1"
+        android:shrinkColumns="*"
         android:stretchColumns="*"
         android:id="@+id/calendar_events_buttons">
       <TableRow>
