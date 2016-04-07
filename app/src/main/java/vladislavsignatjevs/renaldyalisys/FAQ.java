@@ -102,17 +102,17 @@ public class FAQ extends Activity {
                         savedResponse =  response.toString();
                         Log.d(TAG, "SAVED RESPONSE WITH RUBBISH TEST "+savedResponse );
                         //removing rubbish from string
-                        savedResponse = savedResponse.replace("\"","");
                         savedResponse = savedResponse.replace("{","");
-                        savedResponse = savedResponse.replace("}","");
-                        savedResponse = savedResponse.replace("sep:","");
+                        savedResponse = savedResponse.replace("}", "");
+                        //  savedResponse = savedResponse.replace("\"}}", "");
+                        savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
                         Log.d(TAG, "SAVED RESPONSE NO RUBBISH "+savedResponse );
                         //split response by "," and put questions and answers into hashmap faq
-                        String[] pairs = savedResponse.split(",");
+                        String[] pairs = savedResponse.split("\",\"");
                         for (int i=0;i<pairs.length;i++) {
                             String pair = pairs[i];
 
-                            String[] keyValue = pair.split(":");
+                            String[] keyValue = pair.split("\":\"");
                             Log.d(TAG, "keyvalue 0: " +keyValue[0] +" keyvalue1 "+keyValue[1] );
                             faq.put(keyValue[0], keyValue[1]);
                         }
@@ -129,6 +129,7 @@ public class FAQ extends Activity {
                         //fetching number of questions from hashmap
                         qCount = faq.get("qCount");
                         //replacing rubbish
+                        qCount = qCount.replace("\\", "");
                         qCount=qCount.replace("\"","");
                         //trimming that string and parsing int that will be used as a counter
                         int qCountInt = Integer.parseInt(qCount.trim());
@@ -138,8 +139,7 @@ public class FAQ extends Activity {
                             //getting questions from hashmap
                             quest = faq.get("question"+questionCount);
                             ans = faq.get("answer"+questionCount);
-                            quest = quest.replace("<koma>",",");
-                            ans = ans.replace("<koma>",",");
+
                             //output to console for debugging
                             Log.d(TAG, "QUESTION IS  "+quest );
                             Log.d(TAG, "ANSWER IS  "+ans );

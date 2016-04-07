@@ -825,7 +825,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
                         JSONObject jObj = new JSONObject(response);
                         boolean error = jObj.getBoolean("error");
                         if (!error) {
-                            //retrieve faq
+                            //retrieve events
                             savedResponse = response.toString();
                             Log.d(tag, "SAVED RESPONSE WITH RUBBISH TEST " + savedResponse);
                             //removing rubbish from string
@@ -834,7 +834,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
                           //  savedResponse = savedResponse.replace("\"}}", "");
                             savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
                             Log.d(tag, "SAVED RESPONSE NO RUBBISH " + savedResponse);
-                            //split response by "," and put questions and answers into hashmap faq
+                            //split response by "," and put questions and answers into hashmap events
 
                             String[] pairs = savedResponse.split("\",\"");
                             for (int i = 0; i < pairs.length; i++) {
@@ -873,53 +873,21 @@ public class CalendarEvents extends Activity implements OnClickListener {
                                     checkEvents++;
 
                                 }
-                                //     eventDescription = eventDescription.replace("<koma>",",");
-                                //    eventName = eventName.replace("<koma>",",");
                                 //output to console for debugging
                                 Log.d(tag, "EVENT"+eventCount +" NAME IS  " + eventName);
                                 Log.d(tag, "EVENT"+eventCount +" TIME IS  " + eventTime);
                                 Log.d(tag, "EVENT"+eventCount +" DATE IS :" + eventDate);
                                 Log.d(tag, "EVENT"+eventCount +" DESCRIPTION IS :" + eventDescription);
                                 Log.d(tag, "EVENTS COUNT IS :" + eCount);
-                                //  Displaying question/answer on the screen
-                                //setting question to display in a row
-//                            TableRow row = new TableRow(FAQ.this);
-//                            //making unique ids for each row and text view
-//                            row.setId(eventCount + 10);
-//                            TextView question = new TextView(FAQ.this);
-//                            question.setId(eventCount + 11);
-//                            question.setText("Q" + eventCount + ": " + quest);
-//                            question.setTextSize(18);
-//                            question.setBackgroundColor(Color.LTGRAY);
-//                            question.setPadding(10, 10, 10, 10);
-//                            row.addView(question);
-//                            table.addView(row, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-//                            //setting answer to display in a row
-//                            TableRow row1 = new TableRow(FAQ.this);
-//                            //making unique ids for each row and text view
-//                            row1.setId(eventCount+12);
-//                            TextView answer = new TextView(FAQ.this);
-//                            answer.setId(eventCount+ 13);
-//                            answer.setText("A" + eventCount + ": " + ans);
-//                            answer.setBackgroundColor(Color.WHITE);
-//                            answer.setTextSize(18);
-//                            answer.setPadding(10, 10, 10, 10);
-//                            row1.addView(answer);
-//                            table.addView(row1, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-//
-//                            //empty space between question-answer
-//                            TableRow row2 = new TableRow(FAQ.this);
-//                            row2.setId(eventCount+13);
-//                            row2.setPadding(10,10,10,10);
-//                            table.addView(row2, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
                               eventCount++;
 
                             }
 
-//                        table.requestLayout();
+
                         } else {
 
-                            // Error occurred in faq retrieval. Get the error
+                            // Error occurred in events retrieval. Get the error
                             // message
                             String errorMsg = jObj.getString("error_msg");
                             Toast.makeText(getApplicationContext(),
