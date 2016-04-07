@@ -94,7 +94,7 @@ public class Profile extends Activity {
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
 
-        pDialog.setMessage("Getting profile data ...");
+        pDialog.setMessage("Getting profile...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,

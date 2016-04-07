@@ -24,6 +24,11 @@ public class AppConfig {
 
 	//Server profile request url
 	public static String PROFILE_REQUEST = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/profile_request.php";
+
+	//Server events request url
+	public static String EVENTS_REQUEST = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/events_request.php";
+
+
 }
 
 

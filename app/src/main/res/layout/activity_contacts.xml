@@ -31,12 +31,12 @@
         <!--consultant-->
         <TextView
             android:text="@string/consultant_heading"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:textColor="@color/lbl_name"
-            android:layout_gravity="center"
-            android:textSize="20sp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textColor="@color/lbl_name"
+        android:layout_gravity="center"
+        android:textSize="20sp" />
 
         <!--table for consultant-->
         <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"

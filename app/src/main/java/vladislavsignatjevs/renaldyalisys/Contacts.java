@@ -2,7 +2,9 @@ package vladislavsignatjevs.renaldyalisys;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -217,6 +219,43 @@ public class Contacts extends Activity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+
+        //on click listeners to dial telephone numbers
+
+           consultantsNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent caller = new Intent(Intent.ACTION_DIAL);
+                    caller.setData(Uri.parse("tel:"+consNumber));
+                    startActivity(caller);
+                }
+            });
+
+            dietitiansNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent caller = new Intent(Intent.ACTION_DIAL);
+                    caller.setData(Uri.parse("tel:"+dietNumber));
+                    startActivity(caller);
+                }
+            });
+
+            doctorsNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent caller = new Intent(Intent.ACTION_DIAL);
+                    caller.setData(Uri.parse("tel:"+docNumber));
+                    startActivity(caller);
+                }
+            });
+            wardsNumber.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent caller = new Intent(Intent.ACTION_DIAL);
+                    caller.setData(Uri.parse("tel:" + wdNumber));
+                    startActivity(caller);
+                }
+            });
     }
 
 

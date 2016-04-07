@@ -7,14 +7,18 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TimeZone;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -32,12 +36,22 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.CalendarView;
+
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.squareup.timessquare.CalendarPickerView;
 import com.squareup.timessquare.CalendarCellView;
 import com.squareup.timessquare.DayViewAdapter;
+
+import vladislavsignatjevs.renaldyalisys.app.AppConfig;
+import vladislavsignatjevs.renaldyalisys.app.AppController;
 import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
@@ -50,6 +64,9 @@ import android.view.View.OnClickListener;
 import com.squareup.timessquare.CalendarCellDecorator;
 import com.squareup.timessquare.CalendarPickerView.SelectionMode;
 import com.squareup.timessquare.DefaultDayViewAdapter;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,21 +90,25 @@ class MyCalendar {
     }
 }
 
-public class CalendarEvents extends Activity implements OnClickListener  {
-//db helpers
+public class CalendarEvents extends Activity implements OnClickListener {
+    //db helpers
     private SQLiteHandler db;
     private SessionManager session;
 
+    String savedResponse;
+    Map<String, String> events = new HashMap<String, String>();
+    String eventName, eventTime, eventDescription, eventDate, eCount;
 
     /*********************************************************************
-     * UI part*/
+     * UI part
+     */
     private Spinner m_spinner_calender;
     private Button m_button_add;
     private Button m_button_add2;
     private Button m_button_getEvents;
     private TextView m_text_event;
     private static final String tag = FAQ.class.getSimpleName();
-
+    private ProgressDialog pDialog;
     private TextView currentMonth;
     private Button selectedDayMonthYearButton;
     private ImageView prevMonth;
@@ -98,26 +119,39 @@ public class CalendarEvents extends Activity implements OnClickListener  {
     @SuppressLint("NewApi")
     private int month, year;
     @SuppressWarnings("unused")
-    @SuppressLint({ "NewApi", "NewApi", "NewApi", "NewApi" })
+    @SuppressLint({"NewApi", "NewApi", "NewApi", "NewApi"})
     private final DateFormat dateFormatter = new DateFormat();
     private static final String dateTemplate = "MMMM yyyy";
 
-    /** Called when the activity is first created. */
+    /**
+     * Called when the activity is first created.
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
-        /*get calendar list and populate the view*/
-        getCalendars();
-        populateCalendarSpinner();
-        populateAddBtn();
-        populateAddBtn2();
-      //  populateTextEvent();
-        populateGetEventsBtn();
-
-
+        //progress dialogue
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
+
+
+        // Fetching user details from sqlite
+        HashMap<String, String> userData = db.getUserDetails();
+
+        Log.d(tag, "Request UID: " + userData.get("uid").toString());
+     //   requestEvents(userData.get("uid"));
+        /*get calendar list and populate the view*/
+        getCalendars();
+     //   populateCalendarSpinner();
+     //   populateAddBtn();
+        populateAddBtn2();
+        //  populateTextEvent();
+      //  populateGetEventsBtn();
+
+
+
 
         // session manager
         session = new SessionManager(getApplicationContext());
@@ -128,7 +162,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         _calendar = Calendar.getInstance(Locale.getDefault());
         month = _calendar.get(Calendar.MONTH) + 1;
         year = _calendar.get(Calendar.YEAR);
-        Log.d(tag, "Instance " + "Month: " + month + " " + "Year: "+ year);
+        Log.d(tag, "Instance " + "Month: " + month + " " + "Year: " + year);
 
         selectedDayMonthYearButton = (Button) this
                 .findViewById(R.id.selectedDayMonthYear);
@@ -153,9 +187,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         calendarView.setAdapter(adapter);
 
 
-
     }
-
 
 
     private void logoutUser() {
@@ -170,49 +202,58 @@ public class CalendarEvents extends Activity implements OnClickListener  {
 
     }
 
-    private void populateCalendarSpinner() {
-        m_spinner_calender = (Spinner)this.findViewById(R.id.spinner_calendar);
-        ArrayAdapter l_arrayAdapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_spinner_item, m_calendars);
-        l_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        m_spinner_calender.setAdapter(l_arrayAdapter);
-        m_spinner_calender.setSelection(0);
-        m_spinner_calender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> p_parent, View p_view,
-                                       int p_pos, long p_id) {
-                m_selectedCalendarId = m_calendars[(int)p_id].id;
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {}
-        });
-    }
-    private void populateAddBtn() {
-        m_button_add = (Button) this.findViewById(R.id.button_add);
-        m_button_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addEvent();
-            }
-        });
-    }
+//    private void populateCalendarSpinner() {
+//        m_spinner_calender = (Spinner) this.findViewById(R.id.spinner_calendar);
+//        ArrayAdapter l_arrayAdapter = new ArrayAdapter(this.getApplicationContext(), android.R.layout.simple_spinner_item, m_calendars);
+//        l_arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        m_spinner_calender.setAdapter(l_arrayAdapter);
+//        m_spinner_calender.setSelection(0);
+//        m_spinner_calender.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> p_parent, View p_view,
+//                                       int p_pos, long p_id) {
+//                m_selectedCalendarId = m_calendars[(int) p_id].id;
+//            }
+//
+//            @Override
+//            public void onNothingSelected(AdapterView<?> arg0) {
+//            }
+//        });
+//    }
+
+//    private void populateAddBtn() {
+//        m_button_add = (Button) this.findViewById(R.id.button_add);
+//        m_button_add.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //start activity CreateEvent
+//                Intent intent = new Intent(CalendarEvents.this, CreateEvent.class);
+//                startActivity(intent);
+//
+//            }
+//        });
+//    }
+
     private void populateAddBtn2() {
         m_button_add2 = (Button) this.findViewById(R.id.addEvent);
         m_button_add2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addEvent2();
+                Intent intent = new Intent(CalendarEvents.this, CreateEvent.class);
+                startActivity(intent);
             }
         });
     }
-    private void populateGetEventsBtn() {
-        m_button_getEvents = (Button) findViewById(R.id.button_get_events);
-        m_button_getEvents.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getLastThreeEvents();
-            }
-        });
-    }
+
+//    private void populateGetEventsBtn() {
+//        m_button_getEvents = (Button) findViewById(R.id.button_get_events);
+//        m_button_getEvents.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                getLastThreeEvents();
+//            }
+//        });
+//    }
 /*    private void populateTextEvent() {
         m_text_event = (TextView) findViewById(R.id.text_event);
         String l_str = "title: roman10 calendar tutorial test\n" +
@@ -231,6 +272,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
     /*retrieve a list of available calendars*/
     private MyCalendar m_calendars[];
     private String m_selectedCalendarId = "0";
+
     private void getCalendars() {
         String[] l_projection = new String[]{"_id", CalendarContract.Calendars.CALENDAR_DISPLAY_NAME};
         Uri l_calendars;
@@ -239,7 +281,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         } else {
             l_calendars = Uri.parse("content://calendar/calendars");
         }
-        Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection, null, null, null);	//all calendars
+        Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection, null, null, null);    //all calendars
         //Cursor l_managedCursor = this.managedQuery(l_calendars, l_projection, "selected=1", null, null);   //active calendars
         if (l_managedCursor.moveToFirst()) {
             m_calendars = new MyCalendar[l_managedCursor.getCount()];
@@ -256,6 +298,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             } while (l_managedCursor.moveToNext());
         }
     }
+
     /*add an event to calendar*/
     private void addEvent() {
         ContentValues l_event = new ContentValues();
@@ -264,15 +307,15 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         l_event.put("description", "This is a simple test for calendar api");
         l_event.put("eventLocation", "@home");
         l_event.put("dtstart", System.currentTimeMillis());
-        l_event.put("dtend", System.currentTimeMillis() + 1800*1000);
+        l_event.put("dtend", System.currentTimeMillis() + 1800 * 1000);
         l_event.put("eventTimezone", TimeZone.getDefault().getID());
         l_event.put("allDay", 0);
         //status: 0~ tentative; 1~ confirmed; 2~ canceled
         l_event.put("eventStatus", 1);
         //0~ default; 1~ confidential; 2~ private; 3~ public
-    //    l_event.put("visibility", 0);
+        //    l_event.put("visibility", 0);
         //0~ opaque, no timing conflict is allowed; 1~ transparency, allow overlap of scheduling
-   //     l_event.put("transparency", 0);
+        //     l_event.put("transparency", 0);
         //0~ false; 1~ true
         l_event.put("hasAlarm", 1);
         Uri l_eventUri;
@@ -284,6 +327,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         Uri l_uri = this.getContentResolver().insert(l_eventUri, l_event);
         Log.v("++++++test", l_uri.toString());
     }
+
     /*add an event through intent, this doesn't require any permission
      * just send intent to android calendar
      * http://www.openintents.org/en/uris*/
@@ -295,7 +339,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         l_intent.putExtra("description", "This is a simple test for calendar api");
         l_intent.putExtra("eventLocation", "@home");
         l_intent.putExtra("beginTime", System.currentTimeMillis());
-        l_intent.putExtra("endTime", System.currentTimeMillis() + 1800*1000);
+        l_intent.putExtra("endTime", System.currentTimeMillis() + 1800 * 1000);
         l_intent.putExtra("allDay", 0);
         //status: 0~ tentative; 1~ confirmed; 2~ canceled
         l_intent.putExtra("eventStatus", 1);
@@ -311,6 +355,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             Toast.makeText(this.getApplicationContext(), "Sorry, no compatible calendar is found!", Toast.LENGTH_LONG).show();
         }
     }
+
     /*get a list of events
      * http://jimblackler.net/blog/?p=151*/
     private void getLastThreeEvents() {
@@ -342,10 +387,12 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             m_text_event.setText(l_displayText.toString());
         }
     }
+
     /************************************************
      * utility part
      */
     private static final String DATE_TIME_FORMAT = "yyyy MMM dd, HH:mm:ss";
+
     public static String getDateTimeStr(int p_delay_min) {
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
@@ -357,6 +404,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             return sdf.format(l_time);
         }
     }
+
     public static String getDateTimeStr(String p_time_in_millis) {
         SimpleDateFormat sdf = new SimpleDateFormat(DATE_TIME_FORMAT);
         Date l_time = new Date(Long.parseLong(p_time_in_millis));
@@ -365,7 +413,6 @@ public class CalendarEvents extends Activity implements OnClickListener  {
 
 
     /**
-     *
      * @param month
      * @param year
      */
@@ -419,13 +466,13 @@ public class CalendarEvents extends Activity implements OnClickListener  {
 
         private final List<String> list;
         private static final int DAY_OFFSET = 1;
-        private final String[] weekdays = new String[] { "Sun", "Mon", "Tue",
-                "Wed", "Thu", "Fri", "Sat" };
-        private final String[] months = { "January", "February", "March",
+        private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
+                "Wed", "Thu", "Fri", "Sat"};
+        private final String[] months = {"January", "February", "March",
                 "April", "May", "June", "July", "August", "September",
-                "October", "November", "December" };
-        private final int[] daysOfMonth = { 31, 28, 31, 30, 31, 30, 31, 31, 30,
-                31, 30, 31 };
+                "October", "November", "December"};
+        private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
+                31, 30, 31};
         private int daysInMonth;
         private int currentDayOfMonth;
         private int currentWeekDay;
@@ -433,6 +480,9 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         private TextView num_events_per_day;
         private final HashMap<String, Integer> eventsPerMonthMap;
         private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MMM-yyyy");
+        int checkEvents =0 ;
+        String dbFormat;
+        String calendarFormat;
 
         // Days in Current Month
         public GridCellAdapter(Context context, int textViewResourceId,
@@ -440,6 +490,12 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             super();
             this._context = context;
             this.list = new ArrayList<String>();
+
+
+
+
+
+
             Log.d(tag, "==> Passed in Date FOR Month: " + month + " "
                     + "Year: " + year);
             Calendar calendar = Calendar.getInstance();
@@ -587,6 +643,7 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             }
         }
 
+
         /**
          * NOTE: YOU NEED TO IMPLEMENT THIS PART Given the YEAR, MONTH, retrieve
          * ALL entries from a SQLite database for that month. Iterate over the
@@ -601,8 +658,25 @@ public class CalendarEvents extends Activity implements OnClickListener  {
                                                                     int month) {
             HashMap<String, Integer> map = new HashMap<String, Integer>();
 
+
+            //fetching user from db
+            // SqLite database handler
+            db = new SQLiteHandler(getApplicationContext());
+
+
+            // Fetching user details from sqlite
+            HashMap<String, String> userData = db.getUserDetails();
+
+            Log.d(tag, "Request UID GETNUMEVENTS: " + userData.get("uid").toString());
+            requestEvents(userData.get("uid"));
+
             return map;
         }
+
+
+
+
+
 
         @Override
         public long getItemId(int position) {
@@ -611,6 +685,11 @@ public class CalendarEvents extends Activity implements OnClickListener  {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+
+
+
+
+
             View row = convertView;
             if (row == null) {
                 LayoutInflater inflater = (LayoutInflater) _context
@@ -629,31 +708,56 @@ public class CalendarEvents extends Activity implements OnClickListener  {
             String theday = day_color[0];
             String themonth = day_color[2];
             String theyear = day_color[3];
-            if ((!eventsPerMonthMap.isEmpty()) && (eventsPerMonthMap != null)) {
-                if (eventsPerMonthMap.containsKey(theday)) {
-                    num_events_per_day = (TextView) row
-                            .findViewById(R.id.num_events_per_day);
-                    Integer numEvents = (Integer) eventsPerMonthMap.get(theday);
-                    num_events_per_day.setText(numEvents.toString());
-                }
-            }
+            java.util.Date calendarDate = new Date(theday + "-" + themonth + "-" + theyear);
+            SimpleDateFormat dbFormatter = new SimpleDateFormat("yyyy-MM-dd");
+            dbFormat = dbFormatter.format(calendarDate);
+            calendarFormat = (theday + "-" + themonth + "-" + theyear);
+            //logging for debug
+            Log.d(tag, "dbFormat: " + dbFormat + " cFormat " + calendarFormat);
+
+
+//            if ((!eventsPerMonthMap.isEmpty()) && (eventsPerMonthMap != null)) {
+//                if (eventsPerMonthMap.containsKey(theday)) {
+//                    num_events_per_day = (TextView) row
+//                            .findViewById(R.id.num_events_per_day);
+//                    Integer numEvents = (Integer) eventsPerMonthMap.get(theday);
+//                    num_events_per_day.setText(numEvents.toString());
+//                }
+//            }
+
+            //converting calendar appearing date in db format date
+           // int checkEvents = getNumberOfEvents(dbFormat);
 
             // Set the Day GridCell
             gridcell.setText(theday);
             gridcell.setTag(theday + "-" + themonth + "-" + theyear);
             Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
                     + theyear);
-
+            //current prev month
             if (day_color[1].equals("GREY")) {
                 gridcell.setTextColor(getResources()
-                        .getColor(R.color.lightgray));
+                        .getColor(R.color.gray));
+                if (checkEvents >0)
+                {
+                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
+                }
             }
+            //current month
             if (day_color[1].equals("WHITE")) {
                 gridcell.setTextColor(getResources().getColor(
-                        R.color.lightgray02));
+                        R.color.dark));
+                if (checkEvents >0)
+                {
+                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
+                }
             }
+            //current day
             if (day_color[1].equals("BLUE")) {
-                gridcell.setTextColor(getResources().getColor(R.color.orrange));
+                gridcell.setTextColor(getResources().getColor(R.color.sky));
+                if (checkEvents >0)
+                {
+                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
+                }
             }
             return row;
         }
@@ -662,6 +766,13 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         public void onClick(View view) {
             String date_month_year = (String) view.getTag();
             selectedDayMonthYearButton.setText("Selected: " + date_month_year);
+
+
+
+            Intent eventsView = new Intent(CalendarEvents.this, calendar_events_view.class);
+            eventsView.putExtra("date", date_month_year);
+            CalendarEvents.this.startActivity(eventsView);
+
             Log.e("Selected date", date_month_year);
             try {
                 Date parsedDate = dateFormatter.parse(date_month_year);
@@ -687,6 +798,202 @@ public class CalendarEvents extends Activity implements OnClickListener  {
         public int getCurrentWeekDay() {
             return currentWeekDay;
         }
+
+
+        /**
+         * request events via post
+         */
+
+        private void requestEvents(final String email) {
+            // Tag used to cancel the request
+            String tag_string_req = "req_events";
+
+            pDialog.setMessage("Getting Events...");
+            showDialog();
+
+            StringRequest strReq = new StringRequest(Request.Method.POST,
+                    AppConfig.EVENTS_REQUEST, new Response.Listener<String>() {
+
+                @Override
+                public void onResponse(String response) {
+                    Log.d(tag, "Request Events response: " + response.toString());
+
+
+                    hideDialog();
+
+                    try {
+                        JSONObject jObj = new JSONObject(response);
+                        boolean error = jObj.getBoolean("error");
+                        if (!error) {
+                            //retrieve faq
+                            savedResponse = response.toString();
+                            Log.d(tag, "SAVED RESPONSE WITH RUBBISH TEST " + savedResponse);
+                            //removing rubbish from string
+                            savedResponse = savedResponse.replace("{","");
+                            savedResponse = savedResponse.replace("}", "");
+                          //  savedResponse = savedResponse.replace("\"}}", "");
+                            savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
+                            Log.d(tag, "SAVED RESPONSE NO RUBBISH " + savedResponse);
+                            //split response by "," and put questions and answers into hashmap faq
+
+                            String[] pairs = savedResponse.split("\",\"");
+                            for (int i = 0; i < pairs.length; i++) {
+                                String pair = pairs[i];
+
+                                String[] keyValue = pair.split("\":\"");
+                                Log.d(tag, "keyvalue 0: " + keyValue[0] + " keyvalue1 " + keyValue[1]);
+                                events.put(keyValue[0], keyValue[1]);
+                            }
+                            //output hashmap into log
+                            for (Map.Entry entry : events.entrySet()) {
+                                Log.d(tag, "key: " + entry.getKey() + " value " + entry.getValue());
+                            }
+
+                            //   TableLayout table = (TableLayout) findViewById(R.id.faq_table);
+                            int eventCount = 1;
+
+
+                            //fetching number of events from hashmap
+                            eCount = events.get("eCount");
+                            //replacing rubbish
+                            eCount = eCount.replace("\\", "");
+                            eCount = eCount.replace("\"", "");
+                            //trimming that string and parsing int that will be used as a counter
+                            int eCountInt = Integer.parseInt(eCount.trim());
+                            checkEvents=0;
+                            //for loop to get all questions from hashmap
+                            for (int a = 0; a < eCountInt; a++) {
+                                //getting events from hashmap
+                                eventName = events.get("name" + eventCount);
+                                eventDescription = events.get("description" + eventCount);
+                                eventTime = events.get("time" + eventCount);
+                                eventDate = events.get("date" + eventCount);
+                                if (eventDate.equals(dbFormat))
+                                {
+                                    checkEvents++;
+
+                                }
+                                //     eventDescription = eventDescription.replace("<koma>",",");
+                                //    eventName = eventName.replace("<koma>",",");
+                                //output to console for debugging
+                                Log.d(tag, "EVENT"+eventCount +" NAME IS  " + eventName);
+                                Log.d(tag, "EVENT"+eventCount +" TIME IS  " + eventTime);
+                                Log.d(tag, "EVENT"+eventCount +" DATE IS :" + eventDate);
+                                Log.d(tag, "EVENT"+eventCount +" DESCRIPTION IS :" + eventDescription);
+                                Log.d(tag, "EVENTS COUNT IS :" + eCount);
+                                //  Displaying question/answer on the screen
+                                //setting question to display in a row
+//                            TableRow row = new TableRow(FAQ.this);
+//                            //making unique ids for each row and text view
+//                            row.setId(eventCount + 10);
+//                            TextView question = new TextView(FAQ.this);
+//                            question.setId(eventCount + 11);
+//                            question.setText("Q" + eventCount + ": " + quest);
+//                            question.setTextSize(18);
+//                            question.setBackgroundColor(Color.LTGRAY);
+//                            question.setPadding(10, 10, 10, 10);
+//                            row.addView(question);
+//                            table.addView(row, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+//                            //setting answer to display in a row
+//                            TableRow row1 = new TableRow(FAQ.this);
+//                            //making unique ids for each row and text view
+//                            row1.setId(eventCount+12);
+//                            TextView answer = new TextView(FAQ.this);
+//                            answer.setId(eventCount+ 13);
+//                            answer.setText("A" + eventCount + ": " + ans);
+//                            answer.setBackgroundColor(Color.WHITE);
+//                            answer.setTextSize(18);
+//                            answer.setPadding(10, 10, 10, 10);
+//                            row1.addView(answer);
+//                            table.addView(row1, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+//
+//                            //empty space between question-answer
+//                            TableRow row2 = new TableRow(FAQ.this);
+//                            row2.setId(eventCount+13);
+//                            row2.setPadding(10,10,10,10);
+//                            table.addView(row2, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+                              eventCount++;
+
+                            }
+
+//                        table.requestLayout();
+                        } else {
+
+                            // Error occurred in faq retrieval. Get the error
+                            // message
+                            String errorMsg = jObj.getString("error_msg");
+                            Toast.makeText(getApplicationContext(),
+                                    errorMsg, Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e(tag, "Faq retrieval error: " + error.getMessage());
+                    Toast.makeText(getApplicationContext(),
+                            error.getMessage(), Toast.LENGTH_LONG).show();
+                    hideDialog();
+                }
+            }) {
+
+                @Override
+                protected Map<String, String> getParams() {
+                    // Posting params to register url
+                    Map<String, String> params = new HashMap<String, String>();
+                    //list of parameters to the hash map
+                    params.put("email", email);
+
+
+                    return params;
+                }
+            };
+
+            // Adding request to request queue
+            AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+        }
     }
 
+
+
+
+    private void showDialog() {
+        if (!pDialog.isShowing())
+            pDialog.show();
+    }
+
+    private void hideDialog() {
+        if (pDialog.isShowing())
+            pDialog.dismiss();
+    }
+
+
+
+
+    public int getNumberOfEvents(String date){
+
+
+
+        int eventCount = 1;
+        int eventsNum=0;
+        //fetching number of events from hashmap
+        eCount = events.get("date1");
+        Log.d(tag, "get number of events ecount  " + eCount);
+
+        //replacing rubbish
+        eCount = eCount.replace("\"", "");
+        //trimming that string and parsing int that will be used as a counter
+        int eCountInt = Integer.parseInt(eCount.trim());
+        //for loop to get all questions from hashmap
+        for (int a = 0; a < eCountInt; a++) {
+            //getting events from hashmap
+            eventDate = events.get("date" + eventCount);
+
+        }
+        return eventsNum;
+    }
 }
