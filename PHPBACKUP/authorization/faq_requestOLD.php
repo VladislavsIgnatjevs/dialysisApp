@@ -7,21 +7,24 @@
 
 require_once 'include/DB_Functions.php';
 $db = new DB_Functions();   
-$eCounter = 1; 
+$questionCounter = 0; 
    
-    $faq_raw = $db->getFaqTest();
+    $faq_raw = $db->getFaq();
     if ($faq_raw != false) {
-		
-		//output error message false and number of faq
-        
-	    $response["error"] = FALSE;
+		//count faq rows
+        $questionCount = count($faq_raw);
+		$response["error"] = FALSE;
 		
         $faq= $faq_raw;
-		$eCount  = $faq_raw["qCount"];
-		//output events data
-		$response["data"]=$faq_raw;
-	    //encode 
+        $response["sep"] = "sep";
+		$response["sep"]=$faq[1];
+
+		
+		
         echo json_encode($response);
+		echo (" faq value");
+		echo json_encode($faq);
+		echo (",qCount:$questionCount");
     } else {
         //Table missing?
         $response["error"] = TRUE;

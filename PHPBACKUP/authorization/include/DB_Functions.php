@@ -122,7 +122,8 @@ class DB_Functions {
 	
 	 /**
      * Sending essential contacts
-     * @oaram username
+     * @param user id
+	 * author Vladislavs Ignatjevs
      * 
      */
 	 public function getEssentialContacts($id)
@@ -143,20 +144,21 @@ class DB_Functions {
 
 	 /**
      * Sending profile data
-     * @oaram username
+     * @param user id
+	 * author Vladislavs Ignatjevs
      * 
      */
 	 public function getProfile($id)
 	 {
 		 //statement (mind '?')
-		$stmt = $this->conn->prepare("SELECT name, patient_id, dob, allergies, access_type FROM profile WHERE user_id = ?");
+		$stmt = $this->conn->prepare("SELECT name, patient_id, dob, allergies, access_type, sex FROM profile WHERE user_id = ?");
         $stmt->bind_param("s", $id);
 
 
         if ($stmt->execute()) {
-            $userContacts = $stmt->get_result()->fetch_assoc();
+            $userProfile = $stmt->get_result()->fetch_assoc();
             $stmt->close();
-            return $userContacts;
+            return $userProfile;
         } else {
             return NULL;
         }
@@ -164,7 +166,8 @@ class DB_Functions {
 	 
 	 /**
      * Sending faq
-     * @param id
+     * @param none
+	 * author Vladislavs Ignatjevs
      * 
      */
 	 public function getFaq()
@@ -182,8 +185,9 @@ class DB_Functions {
             $pre=null;
         }
 		 //main statement
-		 $pre1 = json_encode($pre);
-		for ($a=1; $a<=4; $a++)
+		// $pre1 = json_encode($pre);
+		// echo ("pre variable = {$pre['COUNT(id)']} !!!!!!!!!");
+		for ($a=1; $a<=$pre['COUNT(id)']; $a++)
 		{
 		$stmt = $this->conn->prepare("SELECT * FROM faq where id = ?");
 		$stmt->bind_param("s", $qCount);
@@ -202,6 +206,67 @@ class DB_Functions {
 		}
 		return $faq_full;
 	 }
-}
+	 /**
+     * Sending faq
+     * @param none
+	 * author Vladislavs Ignatjevs
+     * 
+     */
+	 public function getFaqTest()
+	 {
+		
+
+		$stmt = $this->conn->prepare("SELECT * FROM faq");
+		$stmt->execute();
+		$c = 1;
+		$result = $stmt->get_result();
+	
+			while($response = $result->fetch_assoc())
+			{
+			$resp["question$c"] = $response["question"];
+			$resp["answer$c"]= $response["answer"];
+			$c++;
+			}
+		$c--;
+		$resp["qCount"] = "\"$c";
+		return $resp;
+		
+	 }
+	  
+	 
+		/**
+		* Sending events 
+		* @param id
+		* author Vladislavs Ignatjevs
+		* 
+		*/
+
+		public function getEvents($editID)
+		{
+
+		$stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ? ORDER BY event_time ASC");
+		$stmt->bind_param("s", $editID);
+		$stmt->execute();
+		$c = 1;
+		$result = $stmt->get_result();
+	
+			while($response = $result->fetch_assoc())
+			{
+			$resp["name$c"] = $response["event_name"];
+			$resp["date$c"]= $response["event_date"];
+			$resp["description$c"]= $response["event_description"];
+			$resp["time$c"]= $response["event_time"];
+			$c++;
+			}
+		$c--;
+		$resp["eCount"] = "\"$c";
+		return $resp;
+		}
+	 
+	 
+	 
+	 }
+	 
+	 
 
 ?>
