@@ -172,7 +172,7 @@ public class calendar_events_view extends AppCompatActivity {
 
 
                                 SimpleDateFormat output = new SimpleDateFormat("hh:mm a");
-                                String formattedDate = output.format(dt); //contains 18/01/2013 17:00:00
+                                String formattedDate = output.format(dt);
                                 eventTime = formattedDate;
                                 } catch (ParseException e) {
                                     //handle exception

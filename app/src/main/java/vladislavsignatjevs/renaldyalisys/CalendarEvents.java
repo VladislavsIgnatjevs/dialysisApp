@@ -272,6 +272,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
     /*retrieve a list of available calendars*/
     private MyCalendar m_calendars[];
     private String m_selectedCalendarId = "0";
+    int idFormat = 0;
 
     private void getCalendars() {
         String[] l_projection = new String[]{"_id", CalendarContract.Calendars.CALENDAR_DISPLAY_NAME};
@@ -700,6 +701,8 @@ public class CalendarEvents extends Activity implements OnClickListener {
             // Get a reference to the Day gridcell
             gridcell = (Button) row.findViewById(R.id.calendar_day_gridcell);
             gridcell.setOnClickListener(this);
+            int gridcellId = gridcell.getId();
+            Log.d(tag, "GRIDCELL ID FOR THE DAY: " + gridcellId);
 
             // ACCOUNT FOR SPACING
 
@@ -731,33 +734,36 @@ public class CalendarEvents extends Activity implements OnClickListener {
             // Set the Day GridCell
             gridcell.setText(theday);
             gridcell.setTag(theday + "-" + themonth + "-" + theyear);
+            try {
+                idFormat = Integer.parseInt(dbFormat.replace("-",""));
+            } catch (NumberFormatException nfe) {
+                System.out.println("Could not parse " + nfe);
+            }
+          //  gridcell.setId(idFormat);
+
+
+            Log.d(tag, "gridcellIdformat " +idFormat);
+
             Log.d(tag, "Setting GridCell " + theday + "-" + themonth + "-"
                     + theyear);
             //current prev month
+            Log.d(tag, "CHECKEVENTS VALUE: " + checkEvents);
             if (day_color[1].equals("GREY")) {
                 gridcell.setTextColor(getResources()
                         .getColor(R.color.gray));
-                if (checkEvents >0)
-                {
-                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
-                }
+
+
             }
             //current month
             if (day_color[1].equals("WHITE")) {
                 gridcell.setTextColor(getResources().getColor(
                         R.color.dark));
-                if (checkEvents >0)
-                {
-                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
-                }
+
             }
             //current day
             if (day_color[1].equals("BLUE")) {
                 gridcell.setTextColor(getResources().getColor(R.color.sky));
-                if (checkEvents >0)
-                {
-                    gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
-                }
+
             }
             return row;
         }
@@ -868,11 +874,42 @@ public class CalendarEvents extends Activity implements OnClickListener {
                                 eventDescription = events.get("description" + eventCount);
                                 eventTime = events.get("time" + eventCount);
                                 eventDate = events.get("date" + eventCount);
-                                if (eventDate.equals(dbFormat))
-                                {
-                                    checkEvents++;
+
+
+                                //set event to show in bold in calendar
+                                //convert date into calendar format
+                                Log.d(tag, "hashmap date  "+eventDate);
+
+                                try {
+
+                                    SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+                                    Date dt = input.parse(eventDate);
+
+
+                                    SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy");
+                                    String formattedDate = output.format(dt);
+                                    eventDate = formattedDate;
+                                } catch (ParseException e) {
+                                    //handle exception
+                                }
+
+
+                                Log.d(tag, "calendarFormatdate  "+eventDate);
+                                //find gridcell by tag using generated calendar date
+                                List gridcells = findViewWithTagRecursively(calendarView, eventDate);
+                                Log.d(tag, "gridcells size "+gridcells.size());
+
+                                //gridcells will always contain only one item
+                                if (gridcells.size() == 1) {
+                                      Object buttonInstance = gridcells.get(0);
+                                      Button gridcellInstanceButton = (Button) buttonInstance;
+                                      gridcellInstanceButton.setTypeface(Typeface.create(gridcellInstanceButton.getTypeface(), Typeface.BOLD));
+
+                                 //   gridcellButton.setTypeface(Typeface.create(gridcellButton.getTypeface(),Typeface.BOLD));
 
                                 }
+                               // set the element in bold
+                                //gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
                                 //output to console for debugging
                                 Log.d(tag, "EVENT"+eventCount +" NAME IS  " + eventName);
                                 Log.d(tag, "EVENT"+eventCount +" TIME IS  " + eventTime);
@@ -924,8 +961,66 @@ public class CalendarEvents extends Activity implements OnClickListener {
             // Adding request to request queue
             AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
         }
+
+
+
+        public int getNumberOfEvents(String date){
+            HashMap<String, String> userData = db.getUserDetails();
+
+            Log.d(tag, "Request UID: " + userData.get("uid").toString());
+
+            String uid = userData.get("uid").toString();
+            requestEvents(uid);
+            int eventCount = 1;
+            int eventsNum=0;
+            //fetching number of events from hashmap
+            eCount = events.get("date1");
+            Log.d(tag, "get number of events ecount  " + eCount);
+
+            //replacing rubbish
+            eCount = eCount.replace("\"", "");
+            //trimming that string and parsing int that will be used as a counter
+            int eCountInt = Integer.parseInt(eCount.trim());
+            //for loop to get all questions from hashmap
+            for (int a = 0; a < eCountInt; a++) {
+                //getting events from hashmap
+                eventDate = events.get("date" + eventCount);
+
+            }
+            return eventsNum;
+        }
+
+
+
     }
 
+
+    /**
+     * Get all the views which matches the given Tag recursively
+     * http://stackoverflow.com/questions/9920559/how-to-find-list-of-views-that-has-a-specific-tag-attribute
+     * @param root parent view. for e.g. Layouts
+     * @param tag tag to look for
+     * @return List of views
+     */
+    public static List<View> findViewWithTagRecursively(ViewGroup root, Object tag){
+        List<View> allViews = new ArrayList<View>();
+
+        final int childCount = root.getChildCount();
+        for(int i=0; i<childCount; i++){
+            final View childView = root.getChildAt(i);
+
+            if(childView instanceof ViewGroup){
+                allViews.addAll(findViewWithTagRecursively((ViewGroup)childView, tag));
+            }
+            else{
+                final Object tagView = childView.getTag();
+                if(tagView != null && tagView.equals(tag))
+                    allViews.add(childView);
+            }
+        }
+
+        return allViews;
+    }
 
 
 
@@ -942,26 +1037,5 @@ public class CalendarEvents extends Activity implements OnClickListener {
 
 
 
-    public int getNumberOfEvents(String date){
 
-
-
-        int eventCount = 1;
-        int eventsNum=0;
-        //fetching number of events from hashmap
-        eCount = events.get("date1");
-        Log.d(tag, "get number of events ecount  " + eCount);
-
-        //replacing rubbish
-        eCount = eCount.replace("\"", "");
-        //trimming that string and parsing int that will be used as a counter
-        int eCountInt = Integer.parseInt(eCount.trim());
-        //for loop to get all questions from hashmap
-        for (int a = 0; a < eCountInt; a++) {
-            //getting events from hashmap
-            eventDate = events.get("date" + eventCount);
-
-        }
-        return eventsNum;
-    }
 }
