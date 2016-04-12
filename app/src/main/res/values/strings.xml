@@ -71,7 +71,8 @@
     <string name="hint_event_name">Event name</string>
     <string name="eventsView">Events</string>
     <string name="createEvent">New Event</string>
-    <string name="eventDetails">Event Details</string>
+    <string name="changeEvent">Update event</string>
+
     <string name="deleteEvent">Delete Event</string>
     <string name="hint_event_starttime">Start time</string>
     <string name="hint_event_endname">End time</string>

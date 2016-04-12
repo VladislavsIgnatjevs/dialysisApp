@@ -83,8 +83,8 @@
             android:label="@string/faq"
             android:launchMode="singleTop" />
 
-        <activity android:name=".EventPage"
-            android:label="@string/eventDetails"
+        <activity android:name=".ChangeEvent"
+            android:label="@string/changeEvent"
             android:launchMode="singleTop" />
 
         <activity android:name=".CreateEvent"

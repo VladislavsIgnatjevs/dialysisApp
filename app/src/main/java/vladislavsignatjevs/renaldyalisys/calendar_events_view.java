@@ -1,6 +1,7 @@
 package vladislavsignatjevs.renaldyalisys;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.provider.CalendarContract;
@@ -8,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -34,7 +38,9 @@ import vladislavsignatjevs.renaldyalisys.app.AppController;
 import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
-public class calendar_events_view extends AppCompatActivity {
+import static android.widget.AbsListView.*;
+
+public class calendar_events_view extends AppCompatActivity  {
     private TextView viewDate;
     private static final String tag = FAQ.class.getSimpleName();
     private SQLiteHandler db;
@@ -43,7 +49,7 @@ public class calendar_events_view extends AppCompatActivity {
 
     String savedResponse;
     Map<String, String> events = new HashMap<String, String>();
-    String eventName, eventTime, eventDescription, eventDate, eCount, dbFormatDate;
+    String eventName, eventTime, eventStartTime,eventEndTime, eventDescription, eventDate, eCount, dbFormatDate;
     int checkEvents =0 ;
     int numberingOfEvent=1;
     private Button createEventButton;
@@ -68,6 +74,12 @@ public class calendar_events_view extends AppCompatActivity {
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
+        // session manager
+        session = new SessionManager(getApplicationContext());
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
 
         // Fetching user details from sqlite
         HashMap<String, String> userData = db.getUserDetails();
@@ -83,6 +95,7 @@ public class calendar_events_view extends AppCompatActivity {
                 //start activity CreateEvent
                 Intent intent = new Intent(calendar_events_view.this, CreateEvent.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -152,14 +165,16 @@ public class calendar_events_view extends AppCompatActivity {
                             //getting events from hashmap
                             eventName = events.get("name" + eventCount);
                             eventDescription = events.get("description" + eventCount);
-                            eventTime = events.get("time" + eventCount);
+                            eventStartTime = events.get("start_time" + eventCount);
+                            eventEndTime = events.get("end_time" + eventCount);
                             eventDate = events.get("date" + eventCount);
 
                             //     eventDescription = eventDescription.replace("<koma>",",");
                             //    eventName = eventName.replace("<koma>",",");
                             //output to console for debugging
                             Log.d(tag, "EVENT"+eventCount +" NAME IS  " + eventName);
-                            Log.d(tag, "EVENT"+eventCount +" TIME IS  " + eventTime);
+                            Log.d(tag, "EVENT"+eventCount +" STRT TIME IS  " + eventStartTime);
+                            Log.d(tag, "EVENT"+eventCount +" END TIME IS  " + eventEndTime);
                             Log.d(tag, "EVENT"+eventCount +" DATE IS :" + eventDate);
                             Log.d(tag, "EVENT"+eventCount +" DESCRIPTION IS :" + eventDescription);
                             Log.d(tag, "EVENTS COUNT IS :" + eCount);
@@ -168,15 +183,23 @@ public class calendar_events_view extends AppCompatActivity {
                                 try {
 
                                 SimpleDateFormat input = new SimpleDateFormat("HH:mm:ss");
-                                Date dt = input.parse(eventTime);
-
+                                Date dt = input.parse(eventStartTime);
+                                Date et = input.parse(eventEndTime);
 
                                 SimpleDateFormat output = new SimpleDateFormat("hh:mm a");
                                 String formattedDate = output.format(dt);
-                                eventTime = formattedDate;
+                                    String formattedEndTime = output.format(et);
+                                eventStartTime = formattedDate;
+                                    eventEndTime = formattedEndTime;
                                 } catch (ParseException e) {
                                     //handle exception
                                 }
+
+                                //creating new table for each event
+//                                TableLayout table = new TableLayout(calendar_events_view.this);
+//                                TableLayout.LayoutParams tableParams = new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, TableLayout.LayoutParams.WRAP_CONTENT);
+//                                table.setLayoutParams(tableParams);
+
                                 //  Displaying events on the screen
                                 //setting event title to display in a row with a number of event on the day(events sorted by time on server side query
                                 TableRow row = new TableRow(calendar_events_view.this);
@@ -191,19 +214,23 @@ public class calendar_events_view extends AppCompatActivity {
                                 eventTitle.setPadding(10, 10, 10, 10);
                                 row.addView(eventTitle);
                                 table.addView(row, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                                //setting event time to display in a row
-                                TableRow row1 = new TableRow(calendar_events_view.this);
+                                //setting event start time and end time to display in a row
+                                TableRow row0 = new TableRow(calendar_events_view.this);
                                 //making unique ids for each row and text view
-                                row1.setId(eventCount + 12);
+                                row0.setId(eventCount + 12);
                                 TextView timeOfEvent = new TextView(calendar_events_view.this);
                                 timeOfEvent.setId(eventCount + 13);
-                                timeOfEvent.setText("Starts at: " + eventTime);
+                                timeOfEvent.setText(" " + eventStartTime + " - " + eventEndTime);
+                                timeOfEvent.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_query_builder_black_18dp,0,0,0);
                                 timeOfEvent.setBackgroundColor(getResources().getColor(R.color.lightgray));
                                 timeOfEvent.setTextSize(18);
                                 timeOfEvent.setPadding(10, 10, 10, 10);
-                                row1.addView(timeOfEvent);
-                                table.addView(row1, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                                //setting event time to display in a row
+                                row0.addView(timeOfEvent);
+                                table.addView(row0, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+
+
+                                //setting event description to display in a row
                                 TableRow row3 = new TableRow(calendar_events_view.this);
                                 //making unique ids for each row and text view
                                 row3.setId(eventCount + 14);
@@ -215,11 +242,51 @@ public class calendar_events_view extends AppCompatActivity {
                                 descriptionEvent.setPadding(10, 10, 10, 10);
                                 row3.addView(descriptionEvent);
                                 table.addView(row3, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
-                                //empty space between question-answer
+
+                                //putting change event button in a row
                                 TableRow row2 = new TableRow(calendar_events_view.this);
-                                row2.setId(eventCount + 13);
-                                row2.setPadding(10, 10, 10, 10);
+                                //making unique ids for each row and text view
+                                row2.setId(eventCount + 18);
+
+                                Button changeEventButton = new Button(calendar_events_view.this);
+                                changeEventButton.setId(eventCount + 17);
+
+                                changeEventButton.setText("Change event");
+                                //changeEventButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_mode_edit_black_18dp, 0, 0, 0);
+
+
+                                changeEventButton.setOnClickListener(new View.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent changeEvent = new Intent(calendar_events_view.this, ChangeEvent.class);
+                                        changeEvent.putExtra("eventName", eventName);
+                                        changeEvent.putExtra("eventDescription", eventDescription);
+                                        changeEvent.putExtra("eventDate", eventDate);
+                                        changeEvent.putExtra("eventStartTime", eventStartTime);
+                                        changeEvent.putExtra("eventEndTime", eventEndTime);
+                                        Log.d(tag, "PUTEXTRA" + " NAME IS  " + eventName);
+                                        Log.d(tag, "PUTEXTRA" + " description is  " + eventDescription);
+                                        Log.d(tag, "PUTEXTRA" + " date IS  " + eventDate);
+                                        Log.d(tag, "PUTEXTRA" + " start is  " + eventStartTime);
+                                        Log.d(tag, "PUTEXTRA" + " end is  " + eventEndTime);
+                                        startActivity(changeEvent);
+                                        finish();
+
+                                    }
+                                });
+
+                                descriptionEvent.setPadding(10, 10, 10, 10);
+                                row2.addView(changeEventButton);
                                 table.addView(row2, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+
+
+                                //empty space between question-answer
+                                TableRow row4 = new TableRow(calendar_events_view.this);
+                                row4.setId(eventCount + 16);
+                                row4.setPadding(10, 10, 10, 10);
+                                table.addView(row4, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                                 numberingOfEvent++;
                             }
                                 eventCount++;
@@ -277,6 +344,21 @@ public class calendar_events_view extends AppCompatActivity {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+    /**
+     * Logging out the user. Will set isLoggedIn flag to false in shared
+     * preferences Clears the user data from sqlite users table
+     * */
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.deleteUsers();
+
+        // Launching the login activity
+        Intent intent = new Intent(calendar_events_view.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 
 }

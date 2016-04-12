@@ -28,7 +28,11 @@ public class AppConfig {
 	//Server events request url
 	public static String EVENTS_REQUEST = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/events_request.php";
 
+	//Server create event url
+	public static String CREATE_EVENT = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/create_event.php";
 
+	//Server create event url
+	public static String CHANGE_EVENT = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/change_event.php";
 }
 
 

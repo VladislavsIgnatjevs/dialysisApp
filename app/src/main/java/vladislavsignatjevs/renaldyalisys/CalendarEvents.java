@@ -241,6 +241,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(CalendarEvents.this, CreateEvent.class);
                 startActivity(intent);
+
             }
         });
     }
@@ -469,9 +470,9 @@ public class CalendarEvents extends Activity implements OnClickListener {
         private static final int DAY_OFFSET = 1;
         private final String[] weekdays = new String[]{"Sun", "Mon", "Tue",
                 "Wed", "Thu", "Fri", "Sat"};
-        private final String[] months = {"January", "February", "March",
-                "April", "May", "June", "July", "August", "September",
-                "October", "November", "December"};
+        private final String[] months = {"Jan", "Feb", "Mar",
+                "Apr", "May", "Jun", "Jul", "Aug", "Sep",
+                "Oct", "Nov", "Dec"};
         private final int[] daysOfMonth = {31, 28, 31, 30, 31, 30, 31, 31, 30,
                 31, 30, 31};
         private int daysInMonth;
@@ -787,6 +788,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+
         }
 
         public int getCurrentDayOfMonth() {
@@ -897,22 +899,26 @@ public class CalendarEvents extends Activity implements OnClickListener {
                                 Log.d(tag, "calendarFormatdate  "+eventDate);
                                 //find gridcell by tag using generated calendar date
                                 List gridcells = findViewWithTagRecursively(calendarView, eventDate);
+
                                 Log.d(tag, "gridcells size "+gridcells.size());
+                              //  Log.d(tag, "gridcells value "+gridcells.get(0).toString());
 
                                 //gridcells will always contain only one item
                                 if (gridcells.size() == 1) {
+                                    //get instance of the button
                                       Object buttonInstance = gridcells.get(0);
                                       Button gridcellInstanceButton = (Button) buttonInstance;
+                                    //make the text on the buttton bold
                                       gridcellInstanceButton.setTypeface(Typeface.create(gridcellInstanceButton.getTypeface(), Typeface.BOLD));
 
-                                 //   gridcellButton.setTypeface(Typeface.create(gridcellButton.getTypeface(),Typeface.BOLD));
+
 
                                 }
                                // set the element in bold
                                 //gridcell.setTypeface(Typeface.create(gridcell.getTypeface(),Typeface.BOLD));
                                 //output to console for debugging
                                 Log.d(tag, "EVENT"+eventCount +" NAME IS  " + eventName);
-                                Log.d(tag, "EVENT"+eventCount +" TIME IS  " + eventTime);
+
                                 Log.d(tag, "EVENT"+eventCount +" DATE IS :" + eventDate);
                                 Log.d(tag, "EVENT"+eventCount +" DESCRIPTION IS :" + eventDescription);
                                 Log.d(tag, "EVENTS COUNT IS :" + eCount);
@@ -964,31 +970,6 @@ public class CalendarEvents extends Activity implements OnClickListener {
 
 
 
-        public int getNumberOfEvents(String date){
-            HashMap<String, String> userData = db.getUserDetails();
-
-            Log.d(tag, "Request UID: " + userData.get("uid").toString());
-
-            String uid = userData.get("uid").toString();
-            requestEvents(uid);
-            int eventCount = 1;
-            int eventsNum=0;
-            //fetching number of events from hashmap
-            eCount = events.get("date1");
-            Log.d(tag, "get number of events ecount  " + eCount);
-
-            //replacing rubbish
-            eCount = eCount.replace("\"", "");
-            //trimming that string and parsing int that will be used as a counter
-            int eCountInt = Integer.parseInt(eCount.trim());
-            //for loop to get all questions from hashmap
-            for (int a = 0; a < eCountInt; a++) {
-                //getting events from hashmap
-                eventDate = events.get("date" + eventCount);
-
-            }
-            return eventsNum;
-        }
 
 
 
@@ -1033,6 +1014,8 @@ public class CalendarEvents extends Activity implements OnClickListener {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
+
 
 
 

@@ -50,9 +50,9 @@ import vladislavsignatjevs.renaldyalisys.app.AppController;
 import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
-public class CreateEvent extends Activity {
+public class ChangeEvent extends Activity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
-    private Button addEvent;
+    private Button updateEvent;
     private EditText eventName;
     private EditText eventDetails;
     private TextView eventDate;
@@ -65,14 +65,15 @@ public class CreateEvent extends Activity {
     int DIALOG_STARTTIME = 2;
     int DIALOG_ENDTIME = 3;
     int selectedYear,selectedMonth, selectedDay,selectedHoursStart,selectedMinutesStart, selectedHoursEnd, selectedMinutesEnd;
-    String dbFormatDate,checkFormatDate, calendarFormatDate, dbFormatStartTime, dbFormatEndTime, calendarFormatStartTime, calendarFormatEndTime, currentDate,currentTime;
+    String dbFormatDate,checkFormatDate, calendarFormatDate, dbFormatStartTime, dbFormatEndTime, calendarFormatStartTime, calendarFormatEndTime, currentDate,currentTime, textStartTime,textEndTime;
+    String name_old,details_old,date_old,start_old,end_old;
     Date checkStartTime,checkEndTime, checkCurrentDate, checkEventDate, checkCurrentTime;
     Calendar _calendar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_event);
+        setContentView(R.layout.activity_change_event);
         _calendar = Calendar.getInstance(Locale.getDefault());
         //set default selected day,month,year hours minutes as current calendar readings
         selectedDay = _calendar.get(Calendar.DAY_OF_MONTH);
@@ -85,13 +86,47 @@ public class CreateEvent extends Activity {
         selectedMinutesEnd = _calendar.get(Calendar.MINUTE);
 
         //get layouts
-        eventName = (EditText) findViewById(R.id.create_event_name);
-        eventDetails = (EditText) findViewById(R.id.create_event_description);
-        eventDate = (TextView) findViewById(R.id.create_event_date);
-        eventStartTime = (TextView) findViewById(R.id.create_event_starttime);
-        eventEndTime = (TextView) findViewById(R.id.create_event_endtime);
+        eventName = (EditText) findViewById(R.id.change_event_name);
+        eventDetails = (EditText) findViewById(R.id.change_event_description);
+        eventDate = (TextView) findViewById(R.id.change_event_date);
+        eventStartTime = (TextView) findViewById(R.id.change_event_starttime);
+        eventEndTime = (TextView) findViewById(R.id.change_event_endtime);
+        //set existing values
+        String name = getIntent().getStringExtra("eventName");
+        name_old=name;
+        String details = getIntent().getStringExtra("eventDescription");
+        details_old=details;
+        String date = getIntent().getStringExtra("eventDate");
+        date_old=date;
+        String eventStart = getIntent().getStringExtra("eventStartTime");
+        start_old = eventStart;
+        String eventEnd = getIntent().getStringExtra("eventEndTime");
+        end_old=eventEnd;
 
-        addEvent = (Button) findViewById(R.id.button_add_event);
+        //convert getExtra start time and end time to UK format
+        try {
+
+            SimpleDateFormat input = new SimpleDateFormat("HH:mm:ss");
+            Date dt = input.parse(eventStart);
+            Date et = input.parse(eventEnd);
+
+            SimpleDateFormat output = new SimpleDateFormat("hh:mm a");
+            String formattedStartTime = output.format(dt);
+            String formattedEndTime = output.format(et);
+            textStartTime = formattedStartTime;
+            textEndTime = formattedEndTime;
+        } catch (ParseException e) {
+            //handle exception
+        }
+
+        eventName.setText(name);
+        eventDetails.setText(details);
+        eventDate.setText(date);
+        eventStartTime.setText(textStartTime);
+        eventEndTime.setText(textEndTime);
+
+
+        updateEvent = (Button) findViewById(R.id.button_change_event);
 
 
         // Progress dialog
@@ -130,7 +165,7 @@ public class CreateEvent extends Activity {
 
 
         // Add event button
-        addEvent.setOnClickListener(new View.OnClickListener() {
+        updateEvent.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
                 String name = eventName.getText().toString().trim();
@@ -179,8 +214,8 @@ public class CreateEvent extends Activity {
                     else if (checkStartTime.compareTo(checkEndTime) >0)
                     {
                         Toast.makeText(getApplicationContext(),
-                            "Start time cannot be later than End time.", Toast.LENGTH_LONG)
-                            .show();
+                                "Start time cannot be later than End time.", Toast.LENGTH_LONG)
+                                .show();
 
                     }
                     //check if start time is later than current time
@@ -206,7 +241,7 @@ public class CreateEvent extends Activity {
 
                     Log.d(TAG, "Request UID: " + userData.get("uid").toString());
 
-                    addNewEvent(userData.get("uid"), name, details, dbFormatDate, dbFormatStartTime, dbFormatEndTime);
+                    updateEvent(userData.get("uid"), name,name_old, details,details_old, dbFormatDate,date_old, dbFormatStartTime,start_old, dbFormatEndTime,end_old);
 
                     //finish end exit to calendar
 
@@ -318,21 +353,21 @@ public class CreateEvent extends Activity {
         }
     };
 
-    private void addNewEvent(final String uid, final String name, final String details, final String date, final String start, final String end )
+    private void updateEvent(final String uid, final String name,final String name_old, final String details,final String details_old, final String date,final String date_old, final String start,final String start_old, final String end, final String end_old )
     {
 
         // Tag used to cancel the request
         String tag_string_req = "req_create_event";
 
-        pDialog.setMessage("Creating event ...");
+        pDialog.setMessage("Updating event ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
-                AppConfig.CREATE_EVENT, new Response.Listener<String>() {
+                AppConfig.CHANGE_EVENT, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Create Event response: " + response.toString());
+                Log.d(TAG, "Change Event response: " + response.toString());
                 hideDialog();
 
                 try {
@@ -344,7 +379,7 @@ public class CreateEvent extends Activity {
                         //event added toast
 
                         Toast.makeText(getApplicationContext(),
-                                "Event was successfully added!.", Toast.LENGTH_LONG)
+                                "Event was successfully updated!.", Toast.LENGTH_LONG)
                                 .show();
 
 
@@ -365,7 +400,7 @@ public class CreateEvent extends Activity {
 
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Create Event Error: " + error.getMessage());
+                Log.e(TAG, "Event Update Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
                         error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
@@ -379,10 +414,14 @@ public class CreateEvent extends Activity {
 
                 params.put("uid", uid);
                 params.put("name", name);
+                params.put("name_old", name_old);
                 params.put("details", details);
+                params.put("details_old", details_old);
                 params.put("date", date);
+                params.put("date_old", date_old);
                 params.put("start", start);
-                params.put("end", end);
+                params.put("start_old", start_old);
+                params.put("end_old", end_old);
 
 
                 return params;
@@ -399,7 +438,7 @@ public class CreateEvent extends Activity {
     @Override
     public void onBackPressed() {
         Log.d("CDA", "onBackPressed Called");
-        Intent intent = new Intent(CreateEvent.this, CalendarEvents.class);
+        Intent intent = new Intent(ChangeEvent.this, CalendarEvents.class);
         startActivity(intent);
         finish();
     }
@@ -425,7 +464,7 @@ public class CreateEvent extends Activity {
         db.deleteUsers();
 
         // Launching the login activity
-        Intent intent = new Intent(CreateEvent.this, LoginActivity.class);
+        Intent intent = new Intent(ChangeEvent.this, LoginActivity.class);
         startActivity(intent);
         finish();
     }
