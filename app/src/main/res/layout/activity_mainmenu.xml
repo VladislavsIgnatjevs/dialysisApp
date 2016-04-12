@@ -1,13 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/gridview"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:columnWidth="80dp"
-    android:numColumns="auto_fit"
-    android:verticalSpacing="16dp"
-    android:horizontalSpacing="16dp"
-    android:padding="16dp"
-    android:stretchMode="columnWidth"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/btn_login"
     android:gravity="center"
-    />
+    android:orientation="vertical"
+    android:id="@+id/menuLayout"
+    android:padding="0dp" >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuStartTreatment"
+        android:src="@drawable/start_treatment_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuHealthCheck"
+        android:src="@drawable/check_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuCalendar"
+        android:src="@drawable/calendar_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuEssentialContacts"
+        android:src="@drawable/essential_contact_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuMyDetails"
+        android:src="@drawable/my_details_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuFaq"
+        android:src="@drawable/faq_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/menuLogout"
+        android:src="@drawable/my_details_menu_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+
+    </LinearLayout>

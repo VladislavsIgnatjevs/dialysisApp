@@ -113,11 +113,13 @@ public class CalendarEvents extends Activity implements OnClickListener {
     private Button selectedDayMonthYearButton;
     private ImageView prevMonth;
     private ImageView nextMonth;
+    private ImageView selectedBar;
     private GridView calendarView;
     private GridCellAdapter adapter;
     private Calendar _calendar;
     @SuppressLint("NewApi")
-    private int month, year;
+    private int month, year, day, monthForToday;
+    String monthToday;
     @SuppressWarnings("unused")
     @SuppressLint({"NewApi", "NewApi", "NewApi", "NewApi"})
     private final DateFormat dateFormatter = new DateFormat();
@@ -161,12 +163,32 @@ public class CalendarEvents extends Activity implements OnClickListener {
 
         _calendar = Calendar.getInstance(Locale.getDefault());
         month = _calendar.get(Calendar.MONTH) + 1;
+        monthForToday=month;
         year = _calendar.get(Calendar.YEAR);
+        day = _calendar.get(Calendar.DAY_OF_MONTH);
         Log.d(tag, "Instance " + "Month: " + month + " " + "Year: " + year);
 
         selectedDayMonthYearButton = (Button) this
                 .findViewById(R.id.selectedDayMonthYear);
-        selectedDayMonthYearButton.setText("Selected: ");
+        if (monthForToday <10 )
+        {
+            monthToday = ("0"+monthForToday);
+        }
+        String todayDate = (year +"-"+monthToday+"-"+day);
+        try {
+
+            SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd");
+            Date dt = input.parse(todayDate);
+
+
+            SimpleDateFormat output = new SimpleDateFormat("dd-MMM-yyyy");
+            String formattedDate = output.format(dt);
+            todayDate = formattedDate;
+        } catch (ParseException e) {
+            //handle exception
+        }
+
+        selectedDayMonthYearButton.setText(todayDate);
 
         prevMonth = (ImageView) this.findViewById(R.id.prevMonth);
         prevMonth.setOnClickListener(this);
@@ -772,8 +794,9 @@ public class CalendarEvents extends Activity implements OnClickListener {
         @Override
         public void onClick(View view) {
             String date_month_year = (String) view.getTag();
-            selectedDayMonthYearButton.setText("Selected: " + date_month_year);
-
+            selectedDayMonthYearButton.setText(date_month_year);
+            selectedBar = (ImageView) findViewById(R.id.selectedBar);
+            selectedBar.setImageResource(R.drawable.selected_bar);
 
 
             Intent eventsView = new Intent(CalendarEvents.this, calendar_events_view.class);

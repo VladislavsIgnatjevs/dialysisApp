@@ -14,20 +14,23 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="bg_login">#26ae90</color>
-    <color name="bg_register">#2e3237</color>
+    <color name="bg_login">#0C72B8</color>
+    <color name="emailEditText">#3F9FD8</color>
+    <color name="passwordEditText">#3F9FD8</color>
+    <color name="bg_register">#3F9FD8</color>
     <color name="bg_main">#428bca</color>
     <color name="white">#ffffff</color>
     <color name="input_login">#222222</color>
     <color name="input_login_hint">#999999</color>
-    <color name="input_register">#888888</color>
-    <color name="input_register_bg">#3b4148</color>
-    <color name="input_register_hint">#5e6266</color>
-    <color name="btn_login">#26ae90</color>
-    <color name="btn_login_bg">#eceef1</color>
+    <color name="input_register">#0F0F0F</color>
+    <color name="input_register_bg">#93C8ED</color>
+    <color name="input_register_hint">#575656</color>
+    <color name="sign_up_button">#5BB56A</color>
+    <color name="btn_login">#F6F6F6</color>
+    <color name="btn_login_bg">#5BB56A</color>
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
-
+    <color name ="calendar_header">#19B2E5</color>
 
     <color name="black">#000000</color>
     <color name="symptom_color_selected">#003366</color>

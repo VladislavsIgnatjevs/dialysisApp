@@ -1,5 +1,6 @@
 package vladislavsignatjevs.renaldyalisys;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,7 +41,7 @@ import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
 import static android.widget.AbsListView.*;
 
-public class calendar_events_view extends AppCompatActivity  {
+public class calendar_events_view extends Activity {
     private TextView viewDate;
     private static final String tag = FAQ.class.getSimpleName();
     private SQLiteHandler db;
@@ -210,8 +211,9 @@ public class calendar_events_view extends AppCompatActivity  {
                                 //use numberingOfEvent to present events in a list using numbering 1 to max value of eventCount
                                 eventTitle.setText(numberingOfEvent + ": " + eventName);
                                 eventTitle.setTextSize(18);
-                                eventTitle.setBackgroundColor(Color.LTGRAY);
+                                eventTitle.setBackgroundColor(getResources().getColor(R.color.white));
                                 eventTitle.setPadding(10, 10, 10, 10);
+
                                 row.addView(eventTitle);
                                 table.addView(row, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                                 //setting event start time and end time to display in a row
@@ -222,7 +224,7 @@ public class calendar_events_view extends AppCompatActivity  {
                                 timeOfEvent.setId(eventCount + 13);
                                 timeOfEvent.setText(" " + eventStartTime + " - " + eventEndTime);
                                 timeOfEvent.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_query_builder_black_18dp,0,0,0);
-                                timeOfEvent.setBackgroundColor(getResources().getColor(R.color.lightgray));
+                                timeOfEvent.setBackgroundColor(getResources().getColor(R.color.white));
                                 timeOfEvent.setTextSize(18);
                                 timeOfEvent.setPadding(10, 10, 10, 10);
                                 row0.addView(timeOfEvent);
@@ -237,7 +239,7 @@ public class calendar_events_view extends AppCompatActivity  {
                                 TextView descriptionEvent = new TextView(calendar_events_view.this);
                                 descriptionEvent.setId(eventCount + 15);
                                 descriptionEvent.setText("Details: " + eventDescription);
-                                descriptionEvent.setBackgroundColor(getResources().getColor(R.color.lightgray02));
+                                descriptionEvent.setBackgroundColor(getResources().getColor(R.color.white));
                                 descriptionEvent.setTextSize(18);
                                 descriptionEvent.setPadding(10, 10, 10, 10);
                                 row3.addView(descriptionEvent);
@@ -247,7 +249,7 @@ public class calendar_events_view extends AppCompatActivity  {
                                 TableRow row2 = new TableRow(calendar_events_view.this);
                                 //making unique ids for each row and text view
                                 row2.setId(eventCount + 18);
-
+                                row2.setBackgroundColor(getResources().getColor(R.color.white));
                                 Button changeEventButton = new Button(calendar_events_view.this);
                                 changeEventButton.setId(eventCount + 17);
 
