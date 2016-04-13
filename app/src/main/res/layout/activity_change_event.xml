@@ -4,28 +4,42 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="${relativePackage}.${activityClass}" >
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/calendar_action_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
     <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="32dp">
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginRight="0dp"
+            android:layout_marginTop="0dp"
+
             android:gravity="center"
             android:orientation="vertical">
 
+
             <TextView
-                android:text="Update event"
+                android:text="Update Event"
                 android:id="@+id/change_event_heading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:layout_height="70sp"
                 android:padding="10dp"
-                android:textColor="@color/lbl_name"
-                android:layout_gravity="center"
+                android:textColor="@color/white"
+                android:background = "@drawable/today_empty"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+
+                android:gravity="center"
                 android:textSize="20sp" />
 
             <EditText
@@ -33,8 +47,11 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:background="@color/add_update_event_edittext"
                 android:hint="@string/hint_event_name"
+                android:layout_marginTop="15sp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:inputType="text"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -46,8 +63,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:background="@color/add_update_event_edittext"
                 android:hint="@string/hint_event_description"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 android:inputType="text"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -58,7 +77,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@color/add_update_event_edittext"
+                android:textSize="18sp"
                 android:hint="@string/hint_event_date"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -69,7 +91,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:background="@color/add_update_event_edittext"
                 android:hint="@string/hint_event_starttime"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -80,7 +105,10 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:background="@color/white"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:textSize="18sp"
+                android:background="@color/add_update_event_edittext"
                 android:hint="@string/hint_event_endname"
                 android:padding="10dp"
                 android:singleLine="true"
@@ -89,7 +117,7 @@
 
             <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginTop="5dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
@@ -97,10 +125,13 @@
                 android:stretchColumns="*"
                 android:id="@+id/change_event_buttons">
                 <TableRow>
-                    <Button android:id="@+id/button_change_event"
+                    <Button
+                        android:id="@+id/button_change_event"
                         android:layout_height="wrap_content"
-                        android:layout_width="150px"
-                        android:text="Update event"
+                        android:layout_width="match_parent"
+                        android:text="  Update event  "
+                        android:textColor="@color/white"
+                        android:background="@color/add_update_event"
                         android:layout_gravity="center"
                         android:gravity="center"
                         />

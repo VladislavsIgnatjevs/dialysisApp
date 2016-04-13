@@ -31,6 +31,10 @@
     <color name="lbl_name">#333333</color>
     <color name="btn_logut_bg">#ff6861</color>
     <color name ="calendar_header">#19B2E5</color>
+    <color name ="add_update_event">#5BB56A</color>
+    <color name="add_update_event_edittext">#CCE3E0</color>
+    <color name="essential_contacts_bg">#EDEDED</color>
+    <color name="essential_contacts_headings">#9D9D9C</color>
 
     <color name="black">#000000</color>
     <color name="symptom_color_selected">#003366</color>

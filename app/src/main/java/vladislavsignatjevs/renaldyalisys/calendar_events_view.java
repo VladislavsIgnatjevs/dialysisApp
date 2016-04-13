@@ -252,8 +252,11 @@ public class calendar_events_view extends Activity {
                                 row2.setBackgroundColor(getResources().getColor(R.color.white));
                                 Button changeEventButton = new Button(calendar_events_view.this);
                                 changeEventButton.setId(eventCount + 17);
+                                changeEventButton.setBackgroundColor(getResources().getColor(R.color.add_update_event));
+                                changeEventButton.setTextColor(getResources().getColor(R.color.white));
 
                                 changeEventButton.setText("Change event");
+
                                 //changeEventButton.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_mode_edit_black_18dp, 0, 0, 0);
 
 
@@ -334,6 +337,14 @@ public class calendar_events_view extends Activity {
 
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+    @Override
+    public void onBackPressed() {
+        Log.d("CDA", "onBackPressed Called");
+        Intent intent = new Intent(calendar_events_view.this, CalendarEvents.class);
+        startActivity(intent);
+        finish();
     }
 
 

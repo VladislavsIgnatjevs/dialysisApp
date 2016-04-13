@@ -263,6 +263,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
             public void onClick(View v) {
                 Intent intent = new Intent(CalendarEvents.this, CreateEvent.class);
                 startActivity(intent);
+                finish();
 
             }
         });
@@ -811,6 +812,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            finish();
 
         }
 
