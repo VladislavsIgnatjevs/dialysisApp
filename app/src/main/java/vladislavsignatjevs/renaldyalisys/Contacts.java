@@ -130,16 +130,17 @@ public class Contacts extends Activity {
                         //user exists. retrieve contacts
                         savedResponse =  response.toString();
                         //removing rubbish from string
-                        savedResponse = savedResponse.replace("\"","");
                         savedResponse = savedResponse.replace("{","");
-                        savedResponse = savedResponse.replace("}","");
+                        savedResponse = savedResponse.replace("}", "");
+                        //  savedResponse = savedResponse.replace("\"}}", "");
+                        savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
                         Log.d(TAG, "SAVED RESPONSE NO RUBBISH "+savedResponse );
                         //split response by "," and put contacts into hashmap contacts
-                        String[] pairs = savedResponse.split(",");
+                        String[] pairs = savedResponse.split("\",\"");
                         for (int i=0;i<pairs.length;i++) {
                             String pair = pairs[i];
 
-                            String[] keyValue = pair.split(":");
+                            String[] keyValue = pair.split("\":\"");
 
                             contacts.put(keyValue[0], keyValue[1]);
                         }
@@ -151,19 +152,16 @@ public class Contacts extends Activity {
                         consName = contacts.get("consultant_name");
                         consNumber = contacts.get("consultant_number");
                         consLocation = contacts.get("consultant_location");
-                        consLocation = consLocation.replace("<koma>", ",");
                         dietName = contacts.get("dietitian_name");
                         dietNumber = contacts.get("dietitian_number");
                         dietLocation = contacts.get("dietitian_location");
-                        dietLocation = dietLocation.replace("<koma>", ",");
                         docName = contacts.get("doctor_name");
                         docNumber = contacts.get("doctor_number");
                         docLocation = contacts.get("doctor_location");
-                        docLocation = docLocation.replace("<koma>", ",");
                         wdName = contacts.get("ward_name");
                         wdNumber = contacts.get("ward_number");
                         wdLocation = contacts.get("ward_location");
-                        wdLocation = wdLocation.replace("<koma>",",");
+                        wdLocation = wdLocation.replace("\"","");
 
                         //  Displaying contacts on the screen
 

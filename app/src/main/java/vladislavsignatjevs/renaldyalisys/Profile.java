@@ -143,13 +143,13 @@ public class Profile extends Activity {
                         //assign gendet to var sex and trim rubbish
                         sex = profile.get("sex").trim();
                         sex = sex.replace("\"", "");
-                        Log.d(TAG, "SEX IS :::"+sex);
+                        Log.d(TAG, "SEX IS : "+sex);
 
 //                        setting profile pic
                         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
                         //preventing very large profile pic situation
                         int maxHeight = display.getHeight()/3;
-                        Log.d(TAG, "max profile pic height :::"+maxHeight);
+                        Log.d(TAG, "max profile pic height : "+maxHeight);
 
 //                        if (sex.equals("m"))
 //                        {

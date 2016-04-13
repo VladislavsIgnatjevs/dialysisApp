@@ -316,7 +316,7 @@
             <TextView
                 android:id="@+id/ward_location"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:padding="10dp"
                 android:textColor="@color/input_login_hint"
                 android:textSize="16sp"
