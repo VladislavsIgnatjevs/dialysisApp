@@ -1,4 +1,4 @@
-# dialysisApp
+# dialysisApp(Dialysis Check)
 
 Part of Honours Project by Vladislavs Ignatjevs
 
@@ -18,4 +18,6 @@ In addition to that, the application will have an ability to check the most vuln
 
 The feature is working by reminding patients to take a picture of their fistula every day, which will then be processed in an attempt to 
 find any illness patterns, which will help significantly in diagnosing problems early - serving as a valuable preventative measure. 
+
+App design by Anna Morozova 
 
