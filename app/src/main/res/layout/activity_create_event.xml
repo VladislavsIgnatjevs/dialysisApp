@@ -29,7 +29,7 @@
 
 
             <TextView
-                android:text="Update Event"
+                android:text="Create Event"
                 android:id="@+id/create_event_heading"
                 android:layout_width="fill_parent"
                 android:layout_height="70sp"

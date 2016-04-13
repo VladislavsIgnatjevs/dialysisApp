@@ -59,12 +59,12 @@
     <string name="patient_name">Name Surname</string>
     <string name="profile_id">My ID is: </string>
     <string name="patient_id">PatientID</string>
-    <string name="profile_dob">My DOB is: </string>
+    <string name="profile_dob">Date of Birth: </string>
     <string name="patient_dob">DD/MM/YYYY </string>
-    <string name="profile_allergies_true">I am allergic to: </string>
+    <string name="profile_allergies_true">Allergies: </string>
     <string name="profile_allergies_false">I have no allergies.</string>
     <string name="patient_allergies">Allegies</string>
-    <string name="profile_access_type">My access type is: </string>
+    <string name="profile_access_type">Access type: </string>
     <string name="patient_access_type">Answer</string>
 
     <!-- Calendar activity-->

@@ -63,7 +63,7 @@ public class Profile extends Activity {
 
         allergies = (TextView) findViewById(R.id.patient_allergies);
         access_type = (TextView) findViewById(R.id.patient_access_type);
-        profilePic = (ImageView) findViewById(R.id.profile_pic);
+       // profilePic = (ImageView) findViewById(R.id.profile_pic);
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
 
@@ -150,18 +150,18 @@ public class Profile extends Activity {
                         int maxHeight = display.getHeight()/3;
                         Log.d(TAG, "max profile pic height :::"+maxHeight);
 
-                        if (sex.equals("m"))
-                        {
-                            profilePic.setImageResource(R.drawable.patient_male);
-                            profilePic.setBackgroundColor(Color.rgb(0, 153, 255));
-                            profilePic.setMaxHeight(maxHeight);
-                        }
-                        if (sex.equals("f"))
-                        {
-                            profilePic.setImageResource(R.drawable.patient_female);
-                            profilePic.setBackgroundColor(Color.rgb(204, 51, 153));
-                            profilePic.setMaxHeight(maxHeight);
-                        }
+//                        if (sex.equals("m"))
+//                        {
+//                            profilePic.setImageResource(R.drawable.patient_male);
+//                            profilePic.setBackgroundColor(Color.rgb(0, 153, 255));
+//                            profilePic.setMaxHeight(maxHeight);
+//                        }
+//                        if (sex.equals("f"))
+//                        {
+//                            profilePic.setImageResource(R.drawable.patient_female);
+//                            profilePic.setBackgroundColor(Color.rgb(204, 51, 153));
+//                            profilePic.setMaxHeight(maxHeight);
+//                        }
                         //  Displaying profile on the screen
 
                         name.setText(patName);

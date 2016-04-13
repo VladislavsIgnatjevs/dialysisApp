@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -151,29 +152,42 @@ public class FAQ extends Activity {
                             row.setId(questionCount + 10);
                             TextView question = new TextView(FAQ.this);
                             question.setId(questionCount + 11);
-                            question.setText("Q" + questionCount + ": " + quest);
+                            question.setText(quest);
                             question.setTextSize(18);
-                            question.setBackgroundColor(Color.LTGRAY);
+                            question.setBackgroundColor(Color.WHITE);
                             question.setPadding(10, 10, 10, 10);
+                            question.setCompoundDrawablesWithIntrinsicBounds(R.drawable.question_icon, 0, 0, 0);
                             row.addView(question);
                             table.addView(row, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+                            //empty space between question and answer
+                            TableRow separator = new TableRow(FAQ.this);
+                            separator.setId(questionCount + 14);
+                            separator.setPadding(10, 10, 10, 10);
+
+                            table.addView(separator, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
+
+
+
                             //setting answer to display in a row
                             TableRow row1 = new TableRow(FAQ.this);
                             //making unique ids for each row and text view
                             row1.setId(questionCount+12);
                             TextView answer = new TextView(FAQ.this);
-                            answer.setId(questionCount+ 13);
-                            answer.setText("A" + questionCount + ": " + ans);
+                            answer.setId(questionCount + 13);
+                            answer.setText(ans);
                             answer.setBackgroundColor(Color.WHITE);
                             answer.setTextSize(18);
                             answer.setPadding(10, 10, 10, 10);
+                            answer.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.answer_icon,0 );
                             row1.addView(answer);
                             table.addView(row1, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
 
                             //empty space between question-answer
                             TableRow row2 = new TableRow(FAQ.this);
                             row2.setId(questionCount+13);
-                            row2.setPadding(10,10,10,10);
+                            row2.setPadding(10, 40, 40, 10);
+
                             table.addView(row2, new TableLayout.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.WRAP_CONTENT));
                             questionCount++;
 
