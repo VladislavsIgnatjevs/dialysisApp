@@ -115,16 +115,17 @@ public class Profile extends Activity {
                         //user exists. retrieve profile data
                         savedResponse =  response.toString();
                         //removing rubbish from string
-                        savedResponse = savedResponse.replace("\"","");
                         savedResponse = savedResponse.replace("{","");
-                        savedResponse = savedResponse.replace("}","");
+                        savedResponse = savedResponse.replace("}", "");
+                        //  savedResponse = savedResponse.replace("\"}}", "");
+                        savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
                         Log.d(TAG, "SAVED RESPONSE NO RUBBISH "+savedResponse );
                         //split response by "," and put profile data into hashmap profile
-                        String[] pairs = savedResponse.split(",");
+                        String[] pairs = savedResponse.split("\",\"");
                         for (int i=0;i<pairs.length;i++) {
                             String pair = pairs[i];
 
-                            String[] keyValue = pair.split(":");
+                            String[] keyValue = pair.split("\":\"");
 
                             profile.put(keyValue[0], keyValue[1]);
                         }
@@ -138,10 +139,10 @@ public class Profile extends Activity {
                         patDOB = profile.get("dob");
                         patAllergies = profile.get("allergies");
                         patAccessType = profile.get("access_type");
-                        patAllergies = patAllergies.replace("<koma>",",");
-                        patAccessType = patAccessType.replace("<koma>",",");
+
                         //assign gendet to var sex and trim rubbish
                         sex = profile.get("sex").trim();
+                        sex = sex.replace("\"", "");
                         Log.d(TAG, "SEX IS :::"+sex);
 
 //                        setting profile pic
