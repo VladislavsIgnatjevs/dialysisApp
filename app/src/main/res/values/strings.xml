@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RenalDyalisys App</string>
+    <string name="app_name">Dialysis Check</string>
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
     <string name="hint_name">Fullname</string>
@@ -91,7 +91,67 @@
     <string name="Single">Single</string>
     <!-- FAQ activity-->
     <!-- Treatment helper activity-->
-    <!-- Healthcheck activity-->
+    <!-- Healthcheck check health activity-->
+    <string name="healthcheck_title">Check health</string>
+    <string name="healthcheck_last_check">Last checked:</string>
+    <string name="healthcheck_test_history">Lab test history</string>
+    <string name="healthcheck_test_viewGraphs">View graphs</string>
+    <string name="healthcheck_test_description">You can check your health by tapping \"Check Health\" or view medical history in graphs by tapping \"View Graphs\"</string>
+
+    <!-- Healthcheck check health activity-->
+    <string name="healthcheck_heading">Health Check Result:</string>
+    <string name="healthcheck_verdict">Passed</string>
+    <string name="healthcheck_details_heading">Check details:</string>
+
+    <string name="healthcheck_date_added">Date added:</string>
+    <string name="healthcheck_serum_creatine">Serum creatine:</string>
+    <string name="healthcheck_date_gfr">Glomerular Filtration Rate:</string>
+    <string name="healthcheck_date_bun">Blood Urea Nitrogen:</string>
+    <string name="healthcheck_date_urine_protein">Urine Protein:</string>
+    <string name="healthcheck_date_microalbuminuria">Microalbuminuria:</string>
+    <string name="healthcheck_date_urine_creatinine">Urine Creatinine:</string>
+    <string name="healthcheck_date_serum_albumin">Serum Albumin:</string>
+    <string name="healthcheck_date_serum_npna">nPNA:</string>
+    <string name="healthcheck_date_serum_sga">Subjective Global Assessment:</string>
+    <string name="healthcheck_date_hemoglobin">Hemoglobin:</string>
+    <string name="healthcheck_date_hematocrit">Hematocrit:</string>
+    <string name="healthcheck_date_tsat">TSAT:</string>
+    <string name="healthcheck_date_serum_ferritin">Serum Ferritin:</string>
+    <string name="healthcheck_date_pth">Parathyroid Hormone:</string>
+    <string name="healthcheck_date_calcium">Calcium:</string>
+    <string name="healthcheck_date_phosphorus">Phosphorus:</string>
+    <string name="healthcheck_date_potassium">Potassium:</string>
+    <string name="healthcheck_date_bodyweight">Body weight:</string>
+    <string name="healthcheck_date_blood_pressure">Blood pressure:</string>
+    <string name="healthcheck_date_total_cholesterol">Total Cholesterol:</string>
+    <string name="healthcheck_date_blood_hdl_cholesterol">HDL Cholesterol:</string>
+    <string name="healthcheck_date_blood_ldl_cholesterol">LDL Cholesterol:</string>
+    <string name="healthcheck_date_blood_hdl_triglyceride">Triglyceride:</string>
+
+    <string name="healthcheck_date_added_desc">Date when lab results were added</string>
+    <string name="healthcheck_serum_creatine_desc">Creatinine is a waste product in your blood that comes from muscle activity. It is normally removed from your blood by your kidneys, but when kidney function slows down, the creatinine level rises. Your doctor should use the results of your serum creatinine test to calculate your GFR.</string>
+    <string name="healthcheck_date_gfr_desc">Your GFR tells how much kidney function you have. It may be estimated from your blood level of creatinine. If your GFR falls below 30 you will need to see a kidney disease specialist (called a nephrologist), Your kidney doctor will speak to you about treatments for kidney failure like dialysis or kidney transplant. A GFR below 15 indicates that you need to start one of these treatments.</string>
+    <string name="healthcheck_date_bun_desc">Urea nitrogen is a normal waste product in your blood that comes from the breakdown of protein from the foods you eat and from your body metabolism. It is normally removed from your blood by your kidneys, but when kidney function slows down, the BUN level rises. BUN can also rise if you eat more protein, and it can fall if you eat less protein.</string>
+    <string name="healthcheck_date_urine_protein_desc">When your kidneys are damaged, protein leaks into your urine. A simple test can be done to detect protein in your urine. Persistent protein in the urine is an early sign of chronic kidney disease.</string>
+    <string name="healthcheck_date_microalbuminuria_desc">This is a sensitive test that can detect a small amount of protein in the urine.</string>
+    <string name="healthcheck_date_urine_creatinine_desc">This test estimates the concentration of your urine and helps to give an accurate protein result. Protein-to-Creatinine Ratio: This estimates the amount of protein you excrete in your urine in a day and avoids the need to collect a 24-hour sample of your urine.</string>
+    <string name="healthcheck_date_serum_albumin_desc">Albumin is a type of body protein made from the protein you eat each day. A low level of albumin in your blood may be caused by not getting enough protein or calories from your diet. A low level of albumin may lead to health problems such as difficulty fighting off infections. Ask your dietitian how to get the right amount of protein and calories from your diet.</string>
+    <string name="healthcheck_date_serum_npna_desc">Your nPNA (normalized protein nitrogen appearance) is a test that may tell if you are eating enough protein. This measurement comes from lab studies that include a urine collection and blood work. Your dietitian may ask for an accurate food record to go with this test.</string>
+    <string name="healthcheck_date_serum_sga_desc">Your dietitian may use SGA to help check for signs of nutrition problems. The dietitian will ask you some questions about your daily diet and check your weight and the fat and muscle stores in your face, hands, arms, shoulders and legs. Ask your dietitian about your score on the SGA. If your score is too low, ask how to improve it.</string>
+    <string name="healthcheck_date_hemoglobin_desc">Hemoglobin is the part of red blood cells that carries oxygen from your lungs to all parts of your body. Your hemoglobin level tells your doctor if you have anemia, which makes you feel tired and have little energy. If you have anemia, you may need treatment with iron supplements and a hormone called erythropoietin (EPO). The goal of anemia treatment is to reach and maintain a hemoglobin level of at least 11 to 12.</string>
+    <string name="healthcheck_date_hematocrit_desc">Your hematocrit is a measure of the red blood cells your body is making. A low hematocrit can mean you have anemia and need treatment with iron and EPO. You will feel less tired and have more energy when your hematocrit reaches at least 33 to 36 percent.</string>
+    <string name="healthcheck_date_tsat_desc">Your TSAT (pronounced tee-sat) and serum ferritin (pronounced ferry-tin) are measures of iron in your body. Your TSAT should be above 20 percent and your serum ferritin should be above 100. This will help you build red blood cells. Your doctor will recommend iron supplements when needed to reach your target levels.</string>
+    <string name="healthcheck_date_serum_ferritin_desc">Your TSAT (pronounced tee-sat) and serum ferritin (pronounced ferry-tin) are measures of iron in your body. Your TSAT should be above 20 percent and your serum ferritin should be above 100. This will help you build red blood cells. Your doctor will recommend iron supplements when needed to reach your target levels.</string>
+    <string name="healthcheck_date_pth_desc">High levels of parathyroid hormone (PTH) may result from a poor balance of calcium and phosphorus in your body. This can cause bone disease. Ask your doctor if your PTH level is in the right range. Your doctor may order a special prescription form of vitamin D to help lower your PTH. Caution: Do not take over-the-counter vitamin D unless ordered by your doctor.</string>
+    <string name="healthcheck_date_calcium_desc">Calcium is a mineral that is important for strong bones. Ask your doctor what your calcium level should be. To help balance the amount of calcium in your blood, your doctor may ask you to take calcium supplements and a special prescription form of vitamin D. Take only the supplements and medications recommended by your doctor.</string>
+    <string name="healthcheck_date_phosphorus_desc">A high phosphorus level can lead to weak bones. Ask your doctor what your phosphorus level should be. If your level is too high, your doctor may ask you to reduce your intake of foods that are high in phosphorus and take a type of medication called a phosphate binder with your meals and snacks.</string>
+    <string name="healthcheck_date_potassium_desc">Potassium is a mineral in your blood that helps your heart and muscles work properly. A potassium level that is too high or too low may weaken muscles and change your heartbeat. Whether you need to change the amount of high- potassium foods in your diet depends on your stage of kidney disease. Ask your doctor what your potassium level should be. Your dietitian can help you plan your diet to get the right amount of potassium.</string>
+    <string name="healthcheck_date_bodyweight_desc">Maintaining a healthy weight is important to your overall health. If you are losing weight without even trying, you may not be getting the right nutrition to stay healthy. Your dietitian can suggest how to safely add extra calories to your diet if needed. On the other hand, if you are slowly gaining too much weight, you may need to reduce calories and increase your activity level. A sudden weight gain can also be a problem. If it is accompanied by swelling, shortness of breath and a rise in blood pressure, it may be a sign of too much fluid in your body. Speak to your doctor if your weight changes noticeably.</string>
+    <string name="healthcheck_date_blood_pressure_desc">Ask your doctor what your blood pressure should be. If your blood pressure is high, make sure to follow all the steps in your prescribed treatment, which may include taking high blood pressure medications, cutting down on the amount of salt in your diet, losing excess weight and following a regular exercise program.</string>
+    <string name="healthcheck_date_total_cholesterol_desc">Cholesterol is a fat-like substance found in your blood. A high cholesterol level may increase your chance of having heart and circulation problems. For many patients, a good level for total cholesterol is below 200. If your cholesterol level is too high, your doctor may ask you to make some changes in your diet and increase your activity level. In some cases, medications are also used.</string>
+    <string name="healthcheck_date_blood_hdl_cholesterol_desc">HDL cholesterol is a type of \"good\" cholesterol that protects your heart. For many patients, the target level for HDL cholesterol is above 40.</string>
+    <string name="healthcheck_date_blood_ldl_cholesterol_desc">LDL cholesterol is a type of \"bad\" cholesterol. A high LDL level may increase your chance of having heart and circulation problems. For many patients, the target level for LDL cholesterol is below 100. If your LDL level is too high, your doctor may ask you to make some changes in your diet and increase your activity level.</string>
+    <string name="healthcheck_date_blood_hdl_triglyceride_desc">Triglyceride is a type of fat found in your blood. A high triglyceride level along with high levels of total and LDL cholesterol may increase your chance of heart and circulation problems.</string>
 
 
 </resources>
