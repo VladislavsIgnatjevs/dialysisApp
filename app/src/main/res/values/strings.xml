@@ -91,6 +91,49 @@
     <string name="Single">Single</string>
     <!-- FAQ activity-->
     <!-- Treatment helper activity-->
+    <string name="treatment_intro_title">Welcome!</string>
+    <string name="treatment_intro_heading1">You are just about to start your treatment</string>
+    <string name="treatment_intro_text1">Dialysis Check will help you to prepare for your treatment and will guide you through it. Tap \"Start preparation\" to begin."</string>
+    <string name="treatment_intro_startPrepButton">Start preparation</string>
+
+    <string name="treatment_prep_hands_title">Washing hands</string>
+    <string name="treatment_prep_hands_heading1">It is very important!</string>
+    <string name="treatment_prep_hands_text1">Don\'t forget to wash your hands and fistula before starting treatment. Keeping hands clean is one of the most important steps you can take to avoid getting sick and spreading germs to others. You can watch video about washing hands above.</string>
+    <string name="treatment_prep_fluid_title">Fluid intake</string>
+    <string name="treatment_prep_fluid_heading1">Don\'t drink extra fluid during dialysis</string>
+    <string name="treatment_prep_fluid_text_html"><![CDATA[<center>Did you know that:
+                    <li>It takes 10 hours for fluid to be absorbed from the intestine into your blood </li>
+                    <li>An average dialysis session lasts 3-5 hours, so excess fluid and potassium consumed during dialysis will <b>not</b> be dialysed off instantly, but absorbed into your blood <b>after dialysis</b> has finished</li>
+                    <li>Check with your Renal Nurse if you are unsure how much you can drink during dialysis</li>
+                    <i>Dialysis Tip: chew ice instead of drinking water</i></center>]]>
+    </string>
+
+    <string name="treatment_prep_food_title">Food</string>
+    <string name="treatment_prep_food_heading1">Avoid high potassium rich foods!</string>
+    <string name="treatment_prep_food_text"><![CDATA[<center>If you tend to have high blood potassium levels,limit potassium rich foods like <b>dried fruit</b>, <b>milk and yoghurt</b>, <b>chocolate</b>, <b>nuts</b> and <b>potato crisps</b>
+                    Good nutrition is very important for haemodialysis
+                    Suitable snacks include:
+                    <li>Sandwiches with meat, fish, chicken, egg or cheese (Remember to take phosphate binders as these foods are high in phosphate)</li>
+                    <li>Plain butter or sponge cake</li><li>Scones, pikelets</li><li>A serve of lower potassium fruit (e.g. an apple, a mandarin or small tub tinned fruit)</li>
+                    <li>rice cakes, rice crackers, cracker bread with margarine, jam or cheese </li>
+                    <li>Sweet, jam or cream-filled biscuits</li>
+                     Did you know that:
+                     <li>It takes at least 5 hours for potassium to be absorbed into your blood – even longer for high fat foods (e.g. chocolate, crisps)
+                     </center>]]>
+         </string>
+
+    <string name="treatment_prep_nextStepButton">Next step</string>
+    <string name="treatment_prep_startTreatmentButton">Start preparation</string>
+
+
+    <string name="treatment_debrief_title">Shall we start?</string>
+    <string name="treatment_debrief_heading1">You are ready to begin treatment</string>
+    <string name="treatment_debrief_text1">Sit back and relax, the nurse will be with you in a moment. To start treatment, press the button below.</string>
+    <string name="treatment_debrief_startTreatmentButton">Start Treatment</string>
+
+
+
+
     <!-- Healthcheck check health activity-->
     <string name="healthcheck_title">Check health</string>
     <string name="healthcheck_last_check">Last checked:</string>

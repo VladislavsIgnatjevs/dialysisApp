@@ -43,7 +43,7 @@ import static android.widget.AbsListView.*;
 
 public class calendar_events_view extends Activity {
     private TextView viewDate;
-    private static final String tag = FAQ.class.getSimpleName();
+    private static final String tag = calendar_events_view.class.getSimpleName();
     private SQLiteHandler db;
     private SessionManager session;
     private ProgressDialog pDialog;

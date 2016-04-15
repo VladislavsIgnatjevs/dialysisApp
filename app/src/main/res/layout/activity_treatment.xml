@@ -1,22 +1,362 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="vladislavsignatjevs.renaldyalisys.Treatment">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/essential_contacts_bg"
+    tools:context="${relativePackage}.${activityClass}" >
 
 
-    <include layout="@layout/content_treatment"/>
-
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
+        android:src="@drawable/start_treatment_action_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
 
-        android:src="@android:drawable/ic_dialog_email" />
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="22dp">
 
-</android.support.design.widget.CoordinatorLayout>
+
+
+    <ViewFlipper
+        android:id="@+id/viewFlipper"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <!-- Into part of treatment -->
+           <LinearLayout
+               android:id="@+id/treatment_into"
+               android:orientation="vertical"
+               android:layout_centerInParent="true"
+               android:layout_marginTop="10dp"
+               android:layout_marginBottom="10dp"
+               android:layout_marginLeft="5dp"
+               android:layout_marginRight="5dp"
+               android:gravity="center"
+               android:layout_width="fill_parent"
+               android:layout_height="fill_parent">
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/treatment_intro_title"
+                   android:textSize="25dp"
+                   android:layout_marginTop="10dp"
+                   android:textColor="@color/profile_heading"/>
+
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/treatment_intro_heading1"
+                   android:textSize="18dp"
+                   android:layout_marginTop="10dp"
+                   android:gravity="center"
+                   android:textColor="@color/profile_left"/>
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="@string/treatment_intro_text1"
+                   android:textSize="16dp"
+                   android:layout_marginTop="20dp"
+
+                   android:padding="10dp"
+                   android:gravity="center"
+                   android:textColor="@color/profile_left"/>
+
+               <Button android:id="@+id/button_start_prep"
+                   android:layout_height="wrap_content"
+                   android:layout_marginTop="10dp"
+                   android:layout_width="300px"
+                   android:text="@string/treatment_intro_startPrepButton"
+                   android:textColor="@color/white"
+                   android:background="@color/add_update_event"
+                   android:layout_gravity="center"
+                   android:gravity="center"
+                   />
+
+               </LinearLayout>
+
+
+           <!-- Preparation for treatment(hands) -->
+
+
+
+            <LinearLayout
+                android:id="@+id/treatment_preparation"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:gravity="center"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment_prep_hands_title"
+                    android:textSize="25dp"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/profile_heading"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment_prep_hands_heading1"
+                    android:textSize="18dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:textColor="@color/profile_left"/>
+                <VideoView
+                    android:id = "@+id/washHandsVideo"
+                    android:layout_width="300px"
+                    android:layout_height="200px"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment_prep_hands_text1"
+                    android:textSize="14dp"
+                    android:layout_marginTop="10dp"
+                    
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:textColor="@color/profile_left"/>
+
+                <Button android:id="@+id/button_next_step_hands"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="300px"
+                    android:text="@string/treatment_prep_nextStepButton"
+                    android:textColor="@color/white"
+                    android:background="@color/add_update_event"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    />
+
+
+            </LinearLayout>
+
+
+
+        <!-- Preparation for treatment(fluid) -->
+
+
+        <LinearLayout
+            android:id="@+id/treatment_preparation_fluid"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_prep_fluid_title"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/profile_heading"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_prep_fluid_heading1"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <WebView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/webViewFluid"
+                android:layout_marginTop="10dp"
+
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <Button android:id="@+id/button_next_step_fluid"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="300px"
+                android:text="@string/treatment_intro_startPrepButton"
+                android:textColor="@color/white"
+                android:background="@color/add_update_event"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+
+
+
+
+        </LinearLayout>
+
+        <!-- Preparation for treatment(food) -->
+
+
+        <LinearLayout
+            android:id="@+id/treatment_preparation_food"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_prep_food_title"
+                android:gravity="center"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/profile_heading"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_prep_food_heading1"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <WebView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/webViewFood"
+                android:layout_marginTop="10dp"
+
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <Button android:id="@+id/button_next_step_food"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="300px"
+                android:text="@string/treatment_prep_nextStepButton"
+                android:textColor="@color/white"
+                android:background="@color/add_update_event"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+
+
+        </LinearLayout>
+
+
+
+        <!-- Preparation for treatment(debrief) -->
+
+
+        <LinearLayout
+            android:id="@+id/treatment_preparation_debrief"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_debrief_title"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/profile_heading"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_debrief_heading1"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_debrief_text1"
+                android:textSize="16dp"
+                android:layout_marginTop="20dp"
+
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <Button android:id="@+id/button_start_treatment"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="300px"
+                android:text="@string/treatment_debrief_startTreatmentButton"
+                android:textColor="@color/white"
+                android:background="@color/add_update_event"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+
+
+
+        </LinearLayout>
+
+        <!-- Treatment (with timer) -->
+        <LinearLayout
+            android:id="@+id/treatment_second_stage"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        </LinearLayout>
+        <!-- End of treatment - finish button? -->
+        <LinearLayout
+            android:id="@+id/treatment_coming_off"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+        </LinearLayout>
+
+    </ViewFlipper>
+
+    </ScrollView>
+
+
+
+    </RelativeLayout>
