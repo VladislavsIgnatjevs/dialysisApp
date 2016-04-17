@@ -17,7 +17,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="22dp">
+        android:layout_marginTop="32dp">
 
 
 
@@ -26,15 +26,18 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
         <!-- Into part of treatment -->
+
+
+
            <LinearLayout
                android:id="@+id/treatment_into"
                android:orientation="vertical"
-               android:layout_centerInParent="true"
+
                android:layout_marginTop="10dp"
                android:layout_marginBottom="10dp"
                android:layout_marginLeft="5dp"
                android:layout_marginRight="5dp"
-               android:gravity="center"
+               android:gravity="center|top"
                android:layout_width="fill_parent"
                android:layout_height="fill_parent">
 
@@ -86,12 +89,12 @@
             <LinearLayout
                 android:id="@+id/treatment_preparation"
                 android:orientation="vertical"
-                android:layout_centerInParent="true"
-                android:layout_marginTop="10dp"
+
+
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:gravity="center"
+                android:gravity="center|top"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent">
 
@@ -101,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/treatment_prep_hands_title"
                     android:textSize="25dp"
-                    android:layout_marginTop="10dp"
+
                     android:textColor="@color/profile_heading"/>
 
                 <TextView
@@ -109,29 +112,38 @@
                     android:layout_height="wrap_content"
                     android:text="@string/treatment_prep_hands_heading1"
                     android:textSize="18dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:gravity="center"
                     android:textColor="@color/profile_left"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/treatment_prep_hands_heading2"
+                    android:textSize="14dp"
+                    android:layout_marginTop="3dp"
+                    android:gravity="center"
+                    android:textColor="@color/profile_left"/>
+
                 <VideoView
                     android:id = "@+id/washHandsVideo"
-                    android:layout_width="300px"
-                    android:layout_height="200px"
-                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="280px"
+                    android:layout_margin="10dp"
                     />
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/treatment_prep_hands_text1"
                     android:textSize="14dp"
-                    android:layout_marginTop="10dp"
-                    
+
                     android:padding="5dp"
                     android:gravity="center"
                     android:textColor="@color/profile_left"/>
 
                 <Button android:id="@+id/button_next_step_hands"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     android:layout_width="300px"
                     android:text="@string/treatment_prep_nextStepButton"
                     android:textColor="@color/white"
@@ -151,12 +163,12 @@
         <LinearLayout
             android:id="@+id/treatment_preparation_fluid"
             android:orientation="vertical"
-            android:layout_centerInParent="true"
+            android:gravity="center|top"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:gravity="center"
+
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
@@ -178,21 +190,22 @@
                 android:gravity="center"
                 android:textColor="@color/profile_left"/>
 
-            <WebView
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/webViewFluid"
-                android:layout_marginTop="10dp"
+                android:id="@+id/textViewFluidHtml"
 
+                android:textSize="16dp"
                 android:padding="10dp"
                 android:gravity="center"
                 android:textColor="@color/profile_left"/>
 
             <Button android:id="@+id/button_next_step_fluid"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+
                 android:layout_width="300px"
-                android:text="@string/treatment_intro_startPrepButton"
+                android:text="@string/treatment_prep_nextStepButton"
                 android:textColor="@color/white"
                 android:background="@color/add_update_event"
                 android:layout_gravity="center"
@@ -238,19 +251,20 @@
                 android:gravity="center"
                 android:textColor="@color/profile_left"/>
 
-            <WebView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/webViewFood"
-                android:layout_marginTop="10dp"
+                android:id="@+id/textViewFoodHtml"
 
+                android:textSize="16dp"
                 android:padding="10dp"
                 android:gravity="center"
-                android:textColor="@color/profile_left"/>
+                android:textColor="@color/profile_left"
+                android:background="@color/essential_contacts_bg"/>
 
             <Button android:id="@+id/button_next_step_food"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+
                 android:layout_width="300px"
                 android:text="@string/treatment_prep_nextStepButton"
                 android:textColor="@color/white"
@@ -324,7 +338,71 @@
 
         </LinearLayout>
 
+
+        <LinearLayout
+            android:id="@+id/treatment_second_stage_timer"
+            android:orientation="vertical"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_timer_title"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/profile_heading"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_timer_heading"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_timer_text1"
+                android:textSize="16dp"
+                android:layout_marginTop="20dp"
+
+                android:padding="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <Button android:id="@+id/button_timer_set"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="300px"
+                android:text="@string/treatment_second_stage_timerButton"
+                android:textColor="@color/white"
+                android:background="@color/add_update_event"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+            <Button android:id="@+id/begin"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_width="300px"
+                android:text="begin"
+                android:textColor="@color/white"
+                android:background="@color/add_update_event"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+        </LinearLayout>
+
         <!-- Treatment (with timer) -->
+
         <LinearLayout
             android:id="@+id/treatment_second_stage"
             android:orientation="vertical"
@@ -337,8 +415,61 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_title"
+                android:textSize="25dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/profile_heading"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_heading1"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="99 hours 60 minutes left"
+                android:textSize="28dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:id = "@+id/treatment_second_stage_timer_value"
+                android:textColor="@color/profile_left"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treatment_second_stage_heading3"
+                android:textSize="18dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:textColor="@color/profile_left"/>
+
+
+
+            <Button android:id="@+id/button_abandon_treatment"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_width="300px"
+                android:text="@string/treatment_second_stage_abandonButton"
+                android:textColor="@color/white"
+                android:background="@color/red"
+                android:layout_gravity="center"
+                android:gravity="center"
+                />
+
+
+
+
         </LinearLayout>
-        <!-- End of treatment - finish button? -->
+       <!-- End of treatment - finish button? -->
+
+
         <LinearLayout
             android:id="@+id/treatment_coming_off"
             android:orientation="vertical"
@@ -350,6 +481,9 @@
             android:gravity="center"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent">
+
+
+
 
         </LinearLayout>
 
