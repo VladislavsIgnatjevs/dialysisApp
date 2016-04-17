@@ -51,7 +51,7 @@ import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
 public class ChangeEvent extends Activity {
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final String TAG = ChangeEvent.class.getSimpleName();
     private Button updateEvent;
     private EditText eventName;
     private EditText eventDetails;

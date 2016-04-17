@@ -107,7 +107,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
     private Button m_button_add2;
     private Button m_button_getEvents;
     private TextView m_text_event;
-    private static final String tag = FAQ.class.getSimpleName();
+    private static final String tag = CalendarEvents.class.getSimpleName();
     private ProgressDialog pDialog;
     private TextView currentMonth;
     private Button selectedDayMonthYearButton;

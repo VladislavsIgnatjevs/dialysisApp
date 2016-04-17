@@ -49,7 +49,7 @@ public class Healthcheck extends Activity {
     private ProgressDialog pDialog;
     private SQLiteHandler db;
     private SessionManager session;
-    private static final String TAG = Profile.class.getSimpleName();
+    private static final String TAG = Healthcheck.class.getSimpleName();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
