@@ -5,6 +5,7 @@
     android:fitsSystemWindows="true"
     tools:context="vladislavsignatjevs.renaldyalisys.CalendarEvents"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >

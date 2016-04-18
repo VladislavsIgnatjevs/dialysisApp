@@ -11,6 +11,12 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:src="@drawable/main_menu_bar2"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/menuStartTreatment"
         android:src="@drawable/start_treatment_menu_bar"
         android:adjustViewBounds="true"
@@ -55,7 +61,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/menuLogout"
-        android:src="@drawable/my_details_menu_bar"
+        android:src="@drawable/logout_menu_bar"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop" />
 

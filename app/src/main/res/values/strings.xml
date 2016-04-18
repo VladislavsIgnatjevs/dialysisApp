@@ -102,8 +102,7 @@
     <string name="treatment_prep_hands_text1">Don\'t forget to wash your hands and fistula before starting treatment. Keeping hands clean is one of the most important steps you can take to avoid getting sick and spreading germs to others.</string>
     <string name="treatment_prep_fluid_title">Fluid intake</string>
     <string name="treatment_prep_fluid_heading1">Don\'t drink extra fluid during dialysis</string>
-    <string name="treatment_prep_fluid_text_html"><![CDATA[<center><p><b>Did you know that:</center></b><br>
-                    It takes 10 hours for fluid to be absorbed from the intestine into your blood.<br>
+    <string name="treatment_prep_fluid_text_html"><![CDATA[<center><b>Did you know that:</b></center><p>It takes 10 hours for fluid to be absorbed from the intestine into your blood.<br>
                     An average dialysis session lasts 3-5 hours, so excess fluid and potassium consumed during dialysis will <b>not</b> be dialysed off instantly, but absorbed into your blood <b>after dialysis</b> has finished.<br>
                     <br><b><center>Check with your Renal Nurse if you are unsure how much you can drink during dialysis.</center></b><br>
                     <br>
@@ -112,16 +111,15 @@
 
     <string name="treatment_prep_food_title">Food</string>
     <string name="treatment_prep_food_heading1">Avoid high potassium rich foods!</string>
-    <string name="treatment_prep_food_text_html"><![CDATA[<center>If you tend to have high blood potassium levels,limit potassium rich foods like <b>dried fruit</b>, <b>milk and yoghurt</b>, <b>chocolate</b>, <b>nuts</b> and <b>potato crisps.</b>
+    <string name="treatment_prep_food_text_html"><![CDATA[If you tend to have high blood potassium levels,limit potassium rich foods like <b>dried fruit</b>, <b>milk and yoghurt</b>, <b>chocolate</b>, <b>nuts</b> and <b>potato crisps.</b>
                     Good nutrition is very important for haemodialysis.
-                    <p><b>Suitable snacks include:</b><br>
-                    Sandwiches with meat, fish, chicken, egg or cheese(remember to take phosphate binders with these foods)<br>
-                    Plain butter or sponge cake<br>
-                    Scones, pikelets<br>
-                    A serve of lower potassium fruit (e.g. an apple, a mandarin or small tub tinned fruit)<br>
-                    Rice cakes, rice crackers, cracker bread with margarine, jam or cheese<br>
-                    Sweet, jam or cream-filled biscuits</p>
-                    <p><b>Did you know that:</b><br>
+                    <p><center><b>Suitable snacks include:</b></center><br>
+                    Sandwiches with meat, fish, chicken, egg or cheese(remember to take phosphate binders with these foods),
+                    plain butter or sponge cake,
+                    a serve of lower potassium fruit (e.g. an apple, mandarin),
+                    rice cakes or crackers, cracker bread with margarine, jam or cheese,
+                    sweet, jam or cream-filled biscuits.</p>
+                    <p><center><b>Did you know that:</b><br>
                      It takes at least 5 hours for potassium to be absorbed into your blood – even longer for high fat foods (e.g. chocolate, crisps)</p>
                      </center>]]>
          </string>
@@ -147,6 +145,11 @@
     <string name="treatment_second_stage_heading3">before your treatment finishes</string>
     <string name="treatment_second_stage_abandonButton">Abandon treatment</string>
     <string name="treatment_second_stage_abandonToast">Are you sure that you want to abandon your treatment? </string>
+
+    <string name="treatment_finished_title">Well done!</string>
+    <string name="treatment_finished_heading">Your treatment is finished</string>
+    <string name="treatment_finished_text">Record your weight and blood pressure readings now. Don\'t forget to pass these readings to your nurse before leaving.</string>
+
 
     <!-- Healthcheck check health activity-->
     <string name="healthcheck_title">Check health</string>

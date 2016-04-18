@@ -787,6 +787,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
             //current day
             if (day_color[1].equals("BLUE")) {
                 gridcell.setTextColor(getResources().getColor(R.color.sky));
+                gridcell.setBackground(getResources().getDrawable(R.drawable.today_tile_small));
 
             }
             return row;
@@ -935,8 +936,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
                                       Button gridcellInstanceButton = (Button) buttonInstance;
                                     //make the text on the buttton bold
                                       gridcellInstanceButton.setTypeface(Typeface.create(gridcellInstanceButton.getTypeface(), Typeface.BOLD));
-
-
+                                      gridcellInstanceButton.setBackground( getResources().getDrawable(R.drawable.event_tile_small));
 
                                 }
                                // set the element in bold

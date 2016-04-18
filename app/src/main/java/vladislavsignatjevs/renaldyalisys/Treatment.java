@@ -2,8 +2,10 @@ package vladislavsignatjevs.renaldyalisys;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -21,6 +23,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.MediaController;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.VideoView;
@@ -38,6 +41,9 @@ import android.text.Spanned;
 import vladislavsignatjevs.renaldyalisys.helper.SQLiteHandler;
 import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 
+
+
+
 public class Treatment extends Activity {
     private static final String tag = Treatment.class.getSimpleName();
     private SQLiteHandler db;
@@ -45,15 +51,18 @@ public class Treatment extends Activity {
     private ProgressDialog pDialog;
     private ViewFlipper vFlip;
     private VideoView videoView;
-    TextView fluidHtml,foodHtml;
+    private TextView fluidHtml,foodHtml;
 
-    CounterClass timer;
-    TextView timeLeftValue;
-    TimePickerDialog timePickerDialog;
-    final static int RQS_1 = 1;
-    TimePicker myTimePicker;
-    Button setTimerDialogButton;
-    Button startTreatmentTimerButton, abandonTreatmentButton;
+    private CounterClass timer;
+    private TextView timeLeftValue;
+    private TimePickerDialog timePickerDialog;
+    private final static int RQS_1 = 1;
+    private TimePicker myTimePicker;
+    private ProgressBar progressBar;
+    private Button beginTreatmentButton;
+    private Button startTreatmentTimerButton, abandonTreatmentButton, finishTreatmentButton, exitButton;
+    private int progressStart = 0;
+    AlertDialog.Builder alertDialogBuilder;
 
 
 
@@ -94,6 +103,8 @@ public class Treatment extends Activity {
         fluidNext = (Button) findViewById(R.id.button_next_step_fluid);
         foodNext = (Button) findViewById(R.id.button_next_step_food);
         startTreatment = (Button) findViewById(R.id.button_start_treatment);
+        finishTreatmentButton = (Button) findViewById(R.id.finish_treatment_button);
+        exitButton = (Button) findViewById(R.id.button_exit);
         //setting videoView
         videoView = (VideoView)findViewById(R.id.washHandsVideo);
         Uri video1 = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.hand_washing_converted);
@@ -101,6 +112,12 @@ public class Treatment extends Activity {
         videoView.setVideoURI(video1);
         videoView.setMediaController(new MediaController(this));
         videoView.requestFocus();
+
+        //progress bar
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+
+
 
 
 
@@ -129,31 +146,22 @@ public class Treatment extends Activity {
                 vFlip.showNext();
 
 
-
-
-
-
-
-
             }
         });
-        //onClick for video view
-//        videoView.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View view) {
-//
-//                videoView.start();
-//            }
-//        });
+
         //in wash hands on button next step show next
         handsNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 vFlip.showNext();
+                videoView.stopPlayback();
+
             }
         });
         //in fluids on button next step show next
         fluidNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 vFlip.showNext();
+
             }
         });
         //in food on button next step show next
@@ -161,12 +169,15 @@ public class Treatment extends Activity {
         foodNext.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 vFlip.showNext();
+
             }
         });
 
         startTreatment.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 vFlip.showNext();
+
+
             }
         });
 
@@ -178,6 +189,8 @@ public class Treatment extends Activity {
         startTreatmentTimerButton = (Button) findViewById(R.id.button_timer_set);
         abandonTreatmentButton = (Button) findViewById(R.id.button_abandon_treatment);
         timeLeftValue = (TextView) findViewById(R.id.treatment_second_stage_timer_value);
+        beginTreatmentButton = (Button) findViewById(R.id.begin);
+        beginTreatmentButton.setVisibility(View.INVISIBLE);
 
 
 
@@ -185,27 +198,70 @@ public class Treatment extends Activity {
         startTreatmentTimerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openTimePickerDialog(false);
+                openTimePickerDialog(true);
 
             }
         });
+
+        exitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+
+            }
+        });
+
         abandonTreatmentButton.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View v) {
-                timer.cancel();
+                alertDialogBuilder = new AlertDialog.Builder(Treatment.this);
+                alertDialogBuilder.setTitle("Abandon Treatment");
+                alertDialogBuilder.setMessage("Are you sure that you want to abandon your treatment? WARNING: You will exit to the Main Menu");
+                alertDialogBuilder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        timer.cancel();
+                        finish();
+                    }
+                });
+                alertDialogBuilder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        //continue
+                    }
+                });
+                alertDialogBuilder.setIcon(android.R.drawable.ic_dialog_alert);
+                alertDialogBuilder.show();
+
+
+
+
+
+
             }
         });
 
 
-        setTimerDialogButton = (Button) findViewById(R.id.begin);
-        setTimerDialogButton.setOnClickListener(new View.OnClickListener() {
+
+        beginTreatmentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 timer.start();
                 vFlip.showNext();
+
+
+            }
+        });
+
+        finishTreatmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                vFlip.showNext();
+
+
             }
         });
 
@@ -213,6 +269,11 @@ public class Treatment extends Activity {
 
 
     }
+
+
+
+
+
 
     private void showDialog() {
         if (!pDialog.isShowing())
@@ -253,7 +314,7 @@ public class Treatment extends Activity {
                 4,
                 0,
                 is24r);
-        timePickerDialog.setTitle("Set dialysis time");
+        timePickerDialog.setTitle("Set Dialysis time");
 
         timePickerDialog.show();
     }
@@ -261,12 +322,18 @@ public class Treatment extends Activity {
     TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            //V. Ignatjevs: adjust code for created buttons
+            startTreatmentTimerButton.setText("Reset timer");
+            beginTreatmentButton.setVisibility(View.VISIBLE);
             timer = new CounterClass((minute * 60 * 1000) + (hourOfDay * 60* 60 * 1000), 1000);
-            long millis = (minute * 60 * 1000) + (hourOfDay * 60* 60 * 1000);
+            int millis = (minute * 60 * 1000) + (hourOfDay * 60* 60 * 1000);
+
             String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                     TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
             System.out.println(hms);
-            timeLeftValue.setText(hms + "left" );
+            timeLeftValue.setText(hms + "left");
+            progressBar.setMax(millis/1000);
+
 
         }};
 
@@ -292,16 +359,25 @@ public class Treatment extends Activity {
             String hms = String.format("%02d:%02d:%02d", TimeUnit.MILLISECONDS.toHours(millis), TimeUnit.MILLISECONDS.toMinutes(millis) - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(millis)),
                     TimeUnit.MILLISECONDS.toSeconds(millis) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(millis)));
             System.out.println(hms);
-            timeLeftValue.setText(hms);
+            timeLeftValue.setText(hms + " left");
+            progressStart++;
+            progressBar.setProgress(progressStart);
 
         }
 
         @Override
         public void onFinish() {
-
+            abandonTreatmentButton.setVisibility(View.INVISIBLE);
+            finishTreatmentButton.setVisibility(View.VISIBLE);
+            timeLeftValue.setText("00:00:00 left");
         }
 
 
 
-}}
+    }
+
+
+
+
+}
 
