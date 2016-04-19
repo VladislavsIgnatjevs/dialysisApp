@@ -65,7 +65,7 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:stretchColumns="*"
-                android:shrinkColumns="1"
+                android:shrinkColumns="*"
                 android:id="@+id/healthcheck_results_table">
 
                 <!--results date -->
@@ -77,7 +77,8 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:drawableRight="@drawable/question_icon_hc"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
 
@@ -88,132 +89,352 @@
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
                 <TableRow>
-                    <!--serum creatine -->
+                    <!--C-REACTIVE PROTEIN  -->
 
                     <TextView
-                        android:text="@string/healthcheck_serum_creatine"
+                        android:text="@string/healthcheck_creative_protein"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:drawableRight="@drawable/question_icon_hc"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_serum_creatine_val"
+                        android:id="@+id/healthcheck_creative_protein_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
 
                 </TableRow>
-                <!-- GFR-->
+                <!-- IRON-->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_gfr"
+                        android:text="@string/healthcheck_iron"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_gfr_val"
+                        android:id="@+id/healthcheck_iron_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
-                <!-- BUN -->
+                <!-- TRANSFERRIN -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_bun"
+                        android:text="@string/healthcheck_transferrin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:textSize="16sp"
+                        android:drawableRight="@drawable/question_icon_hc"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_bun_val"
+                        android:id="@+id/healthcheck_transferrin_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
-                <!-- Urine protein -->
+                <!-- SATN transferrin -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_urine_protein"
+                        android:text="@string/healthcheck_satn_transferrin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_bun_urine_protein_val"
+                        android:id="@+id/healthcheck_satn_transferrin_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- Microalbuminuria -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_microalbuminuria"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_bun_microalbuminuria_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- Urine creatine -->
+                <!-- PHOSPHATE -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_urine_creatinine"
+                        android:text="@string/healthcheck_phosphate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_urine_creatine_val"
+                        android:id="@+id/healthcheck_phosphate_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- BICARBONATE -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_bicarbonate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_bicarbonate_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- FERRITIN -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_ferritin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_ferritin_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- GLUCOSE -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_glucose"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_glucose_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- MAGNESIUM -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_magnesium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_magnesium_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+                <!-- UREA and ELECTROLYTES -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_urea_electrolytes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+
+                </TableRow>
+
+
+                <!-- sodium -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_sodium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_sodium_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- potassium -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_potassium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_potassium_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- urea -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_urea"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_urea_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- creatinine -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_creatinine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_creatinine_val"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_right"
+                        android:textSize="14sp"
+                        android:layout_gravity="right"
+                        android:layout_marginTop="-10dp"/>
+                </TableRow>
+
+                <!-- Liver function tests -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_lft"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+
+                        android:textSize="16sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+
+                </TableRow>
+
+                <!-- ALT -->
+                <TableRow>
+                    <TextView
+                        android:text="@string/healthcheck_alt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="10dp"
+                        android:textColor="@color/profile_left"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="14sp"
+                        android:layout_gravity="left"
+                        android:layout_marginTop="-10dp"/>
+                    <TextView
+                        android:id="@+id/healthcheck_alt_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -223,379 +444,160 @@
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- Serum Albumin -->
+
+                <!-- BIlirubins -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_serum_albumin"
+                        android:text="@string/healthcheck_bilirubins"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_serum_albumin_val"
+                        android:id="@+id/healthcheck_bilirubins_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- npna -->
+                <!-- ALKALINE PHOSPHATASE -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_serum_npna"
+                        android:text="@string/healthcheck_alkaline_phosphatase"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_npna_val"
+                        android:id="@+id/healthcheck_alkaline_phosphatase_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- SGA -->
+                <!-- albumin -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_serum_sga"
+                        android:text="@string/healthcheck_albumin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_sga_val"
+                        android:id="@+id/healthcheck_albumin_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- hemoglobin -->
+                <!-- Bone group -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_hemoglobin"
+                        android:text="@string/healthcheck_bone_group"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_hemoglobin_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
 
-                <!-- hematocrit -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_hematocrit"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_hematocrit_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
                 </TableRow>
-
-                <!-- tsat -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_tsat"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_tsat_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- serum ferritin -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_serum_ferritin"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_serum_ferritin_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- PTH -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_pth"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_pth_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
                 <!-- calcium -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_calcium"
+                        android:text="@string/healthcheck_calcium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_calcium_val"
+                        android:id="@+id/healthcheck_calcium_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- Phosphorus -->
+                <!-- calcium(corrected) -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_phosphorus"
+                        android:text="@string/healthcheck_calcium_corrected"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_phosphorus_val"
+                        android:id="@+id/healthcheck_calcium_corrected_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- Potassium -->
+                <!-- est GFR -->
                 <TableRow>
                     <TextView
-                        android:text="@string/healthcheck_date_potassium"
+                        android:text="@string/healthcheck_gfr"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_left"
-                        android:textSize="18sp"
+                        android:drawableRight="@drawable/question_icon_hc"
+                        android:textSize="16sp"
+
                         android:layout_gravity="left"
                         android:layout_marginTop="-10dp"/>
                     <TextView
-                        android:id="@+id/healthcheck_date_potassium_val"
+                        android:id="@+id/healthcheck_gfr_val"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
                         android:textColor="@color/profile_right"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_gravity="right"
                         android:layout_marginTop="-10dp"/>
                 </TableRow>
 
-                <!-- body weight -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_bodyweight"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_bodyweight_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- Blood pressure -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_blood_pressure"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_blood_pressure_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- total cholesterol -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_total_cholesterol"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_total_cholesterol_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- HDL cholesterol -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_blood_hdl_cholesterol"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_total_hdl_cholesterol_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- ldl cholesterol -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_blood_ldl_cholesterol"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_ldl_cholesterol_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
-
-                <!-- triglyceride -->
-                <TableRow>
-                    <TextView
-                        android:text="@string/healthcheck_date_blood_hdl_triglyceride"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_left"
-                        android:textSize="18sp"
-                        android:layout_gravity="left"
-                        android:layout_marginTop="-10dp"/>
-                    <TextView
-                        android:id="@+id/healthcheck_date_triglyceride_val"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:padding="10dp"
-                        android:textColor="@color/profile_right"
-                        android:textSize="16sp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="-10dp"/>
-                </TableRow>
 
             </TableLayout>
         </LinearLayout>

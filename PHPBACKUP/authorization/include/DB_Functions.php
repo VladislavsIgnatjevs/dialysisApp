@@ -170,7 +170,7 @@ class DB_Functions {
 	 * author Vladislavs Ignatjevs
      * 
      */
-	 public function getFaq()
+	 public function getFaqOld()
 	 {
 		 $qCount=1;
 		 $faq_full;
@@ -212,7 +212,7 @@ class DB_Functions {
 	 * author Vladislavs Ignatjevs
      * 
      */
-	 public function getFaqTest()
+	 public function getFaq()
 	 {
 		
 
@@ -236,7 +236,7 @@ class DB_Functions {
 	 
 		/**
 		* Sending events 
-		* @param id
+		* @param uid
 		* author Vladislavs Ignatjevs
 		* 
 		*/
@@ -244,7 +244,7 @@ class DB_Functions {
 		public function getEvents($editID)
 		{
 
-		$stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ? ORDER BY event_time ASC");
+		$stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ? ORDER BY event_startTime ASC");
 		$stmt->bind_param("s", $editID);
 		$stmt->execute();
 		$c = 1;
@@ -255,13 +255,122 @@ class DB_Functions {
 			$resp["name$c"] = $response["event_name"];
 			$resp["date$c"]= $response["event_date"];
 			$resp["description$c"]= $response["event_description"];
-			$resp["time$c"]= $response["event_time"];
+			$resp["start_time$c"]= $response["event_startTime"];
+			$resp["end_time$c"] = $response["event_endTime"];
 			$c++;
 			}
 		$c--;
 		$resp["eCount"] = "\"$c";
 		return $resp;
 		}
+		
+		/**
+		* Creating new event
+		* @param uid, name, details, date, start, end 
+		* author Vladislavs Ignatjevs
+		* 
+		*/
+
+		public function createEvent($uid, $name, $details, $date, $start, $end)
+		{
+
+		$stmt = $this->conn->prepare("insert into events (user_id,event_name,event_date,event_description,event_startTime, event_endTime) values (?,?,?,?,?,?)");
+		$stmt->bind_param("ssssss", $uid, $name, $date,$details, $start, $end);
+		$result = $stmt->execute();
+		$stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ?");
+            $stmt->bind_param("s", $uid);
+            $stmt->execute();
+            $event = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $event;
+        } else {
+            return false;
+        }
+		}
+		
+		
+		/**
+		* Changing existing event
+		* @param uid, name, name_old, details,details_old, date,date_old, start,start_old, end, end_old
+		* author Vladislavs Ignatjevs
+		* 
+		*/
+
+		public function changeEvent($uid, $name,$nameOld, $details, $detailsOld, $date, $dateOld, $start, $startOld, $end, $endOld)
+		{
+
+		$stmt = $this->conn->prepare("update events SET event_name = ?, event_date= ?, event_description = ?, event_startTime=?, event_endTime=? where user_id=? AND event_name=? AND event_date=? AND event_description=? AND event_startTime =? AND event_endTime=?");
+		$stmt->bind_param("sssssssssss", $name, $date, $details, $start, $end, $uid, $nameOld, $dateOld, $detailsOld, $startOld, $endOld);
+		$result = $stmt->execute();
+		$stmt->close();
+
+        // check for successful store
+        if ($result) {
+            $stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ? AND event_name=? AND event_date=? AND event_description=? AND event_startTime =? AND event_endTime=?");
+            $stmt->bind_param("ssssss", $uid, $name, $date, $details, $start, $end);
+            $stmt->execute();
+            $event = $stmt->get_result()->fetch_assoc();
+            $stmt->close();
+
+            return $event;
+        } else {
+            return false;
+        }
+		}		
+	 
+	 
+	    /**
+		* Sending medical history
+		* @param uid
+		* author Vladislavs Ignatjevs
+		* 
+		*/
+
+		public function getMedHistory($editID)
+		{
+
+		$stmt = $this->conn->prepare("SELECT * FROM medical_history WHERE user_id = ? ORDER BY date_added ASC");
+		$stmt->bind_param("s", $editID);
+		$stmt->execute();
+		$c = 1;
+		$result = $stmt->get_result();
+	
+			while($response = $result->fetch_assoc())
+			{
+			$resp["date_added$c"] = $response["date_added"];
+			$resp["creative_protein$c"]= $response["creative_protein"];
+			$resp["iron$c"]= $response["iron"];
+			$resp["transferrin$c"]= $response["transferrin"];
+			$resp["satn_transferrin$c"] = $response["satn_transferrin"];		
+			$resp["phosphate$c"]= $response["phosphate"];
+			$resp["bicarbonate$c"]= $response["bicarbonate"];
+			$resp["ferritin$c"] = $response["ferritin"];
+			$resp["glucose$c"]= $response["glucose"];
+			$resp["magnesium$c"]= $response["magnesium"];
+			$resp["sodium$c"]= $response["sodium"];
+			$resp["potassium$c"]= $response["potassium"];
+			$resp["urea$c"] = $response["urea"];	
+			$resp["creatinine$c"]= $response["creatinine"];
+			$resp["alt$c"]= $response["alt"];
+			$resp["bilirubins$c"] = $response["bilirubins"];
+			$resp["alkaline_phosphatase$c"]= $response["alkaline_phosphatase"];
+			$resp["albumin$c"]= $response["albumin"];
+			$resp["calcium$c"] = $response["calcium"];		
+			$resp["calcium_corrected$c"]= $response["calcium_corrected"];
+			$resp["est_gfr$c"]= $response["est_gfr"];
+			$c++;
+			}
+		$c--;
+		$resp["eCount"] = "\"$c";
+		return $resp;
+		}
+	 
+	 
 	 
 	 
 	 

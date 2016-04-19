@@ -10,9 +10,9 @@ $db = new DB_Functions();
 $eCounter = 1; 
 if (isset($_POST['email']) ) {
        $id= $_POST['email'];
-    $faq_raw = $db->getEssentialContacts($id);
+    $faq_raw = $db->getMedHistory($id);
     if ($faq_raw != false) {
-		//output error message false
+		//output error message false 
         
 	    $response["error"] = FALSE;
 		
@@ -29,7 +29,7 @@ if (isset($_POST['email']) ) {
     } else {
         //Table missing?
         $response["error"] = TRUE;
-        $response["error_msg"] = "Contacts table missing in DB? :( ";
+        $response["error_msg"] = "Medical history table missing in DB? :( ";
         echo json_encode($response);
     }
 

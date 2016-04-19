@@ -1,14 +1,7 @@
 package vladislavsignatjevs.renaldyalisys.app;
 
 public class AppConfig {
-//	// Server user login url
-//	public static String URL_LOGIN = "http://192.168.0.4:80/android_login_api/login.php";
-//
-//	// Server user register url
-//	public static String URL_REGISTER = "http://192.168.0.4:80/android_login_api/register.php";
-//
-//	//Server contacts request url
-//	public static String CONTACTS_REQUEST = "http://192.168.0.4:80/android_login_api/contacts_request.php";
+
 
 	// Server user login url
 	public static String URL_LOGIN = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/login.php";
@@ -33,6 +26,10 @@ public class AppConfig {
 
 	//Server create event url
 	public static String CHANGE_EVENT = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/change_event.php";
+
+	//Server request_med_history
+	public static String REQUEST_MED_HISTORY = "https://zeno.computing.dundee.ac.uk/2015-projects/renaldialysis/authorization/med_history_request.php";
+
 }
 
 

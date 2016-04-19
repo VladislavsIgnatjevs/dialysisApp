@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +25,9 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,13 +40,8 @@ import vladislavsignatjevs.renaldyalisys.helper.SessionManager;
 public class Healthcheck extends Activity {
     String savedResponse;
     Map<String,String> profile = new HashMap<String,String>();
-    String patName,patID,patDOB,patAllergies,patAccessType,sex;
-    private TextView name;
-    private TextView patient_id;
-    private TextView dob;
-    private TextView allergies;
-    private TextView access_type;
-    private ImageView profilePic;
+
+
 
     private Button checkHealthButton;
     private Button viewGraphsButton;
@@ -49,7 +49,10 @@ public class Healthcheck extends Activity {
     private ProgressDialog pDialog;
     private SQLiteHandler db;
     private SessionManager session;
-    private static final String TAG = Healthcheck.class.getSimpleName();
+    private static final String tag = Healthcheck.class.getSimpleName();
+
+
+    String eventName, eventTime, eventDescription, eventDate, eCount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,7 +78,7 @@ public class Healthcheck extends Activity {
         // Fetching user details from sqlite
         HashMap<String, String> userData = db.getUserDetails();
 
-        Log.d(TAG, "Request UID: " + userData.get("uid").toString());
+        Log.d(tag, "Request UID: " + userData.get("uid").toString());
 
         checkHealthButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -100,135 +103,7 @@ public class Healthcheck extends Activity {
 
     }
 
-    /**
-     * request user profile data via post
-     *
-     * */
-//    private void requestProfile(final String email)
-//    {
-//        // Tag used to cancel the request
-//        String tag_string_req = "req_profile";
-//
-//        pDialog.setMessage("Getting profile...");
-//        showDialog();
-//
-//        StringRequest strReq = new StringRequest(Request.Method.POST,
-//                AppConfig.PROFILE_REQUEST, new Response.Listener<String>() {
-//
-//            @Override
-//            public void onResponse(String response) {
-//                Log.d(TAG, "Request profile response: " + response.toString());
-//
-//
-//
-//                hideDialog();
-//
-//                try {
-//                    JSONObject jObj = new JSONObject(response);
-//                    boolean error = jObj.getBoolean("error");
-//                    if (!error) {
-//                        //user exists. retrieve profile data
-//                        savedResponse =  response.toString();
-//                        //removing rubbish from string
-//                        savedResponse = savedResponse.replace("{","");
-//                        savedResponse = savedResponse.replace("}", "");
-//                        //  savedResponse = savedResponse.replace("\"}}", "");
-//                        savedResponse = savedResponse.replace("\"error\":false,\"data\":\"","");
-//                        Log.d(TAG, "SAVED RESPONSE NO RUBBISH "+savedResponse );
-//                        //split response by "," and put profile data into hashmap profile
-//                        String[] pairs = savedResponse.split("\",\"");
-//                        for (int i=0;i<pairs.length;i++) {
-//                            String pair = pairs[i];
-//
-//                            String[] keyValue = pair.split("\":\"");
-//
-//                            profile.put(keyValue[0], keyValue[1]);
-//                        }
-//                        //output hashmap into log
-//                        for (Map.Entry entry : profile.entrySet()){
-//                            Log.d(TAG, "key: " +entry.getKey() +" value "+entry.getValue() );
-//                        }
-//
-//                        patName = profile.get("name");
-//                        patID = profile.get("patient_id");
-//                        patDOB = profile.get("dob");
-//                        patAllergies = profile.get("allergies");
-//                        patAccessType = profile.get("access_type");
-//
-//                        //assign gendet to var sex and trim rubbish
-//                        sex = profile.get("sex").trim();
-//                        sex = sex.replace("\"", "");
-//                        Log.d(TAG, "SEX IS : "+sex);
-//
-////                        setting profile pic
-//                        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-//                        //preventing very large profile pic situation
-//                        int maxHeight = display.getHeight()/3;
-//                        Log.d(TAG, "max profile pic height : "+maxHeight);
-//
-////                        if (sex.equals("m"))
-////                        {
-////                            profilePic.setImageResource(R.drawable.patient_male);
-////                            profilePic.setBackgroundColor(Color.rgb(0, 153, 255));
-////                            profilePic.setMaxHeight(maxHeight);
-////                        }
-////                        if (sex.equals("f"))
-////                        {
-////                            profilePic.setImageResource(R.drawable.patient_female);
-////                            profilePic.setBackgroundColor(Color.rgb(204, 51, 153));
-////                            profilePic.setMaxHeight(maxHeight);
-////                        }
-//                        //  Displaying profile on the screen
-//
-//                        name.setText(patName);
-//                        patient_id.setText(patID);
-//                        dob.setText(patDOB);
-//                        allergies.setText(patAllergies);
-//
-//                        access_type.setText(patAccessType);
-//
-//                    }
-//                    else {
-//
-//                        // Error occurred in profile data retrieval. Get the error
-//                        // message
-//                        String errorMsg = jObj.getString("error_msg");
-//                        Toast.makeText(getApplicationContext(),
-//                                errorMsg, Toast.LENGTH_LONG).show();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//
-//            }
-//        }, new Response.ErrorListener() {
-//
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Log.e(TAG, "Profile data retrieval error: " + error.getMessage());
-//                Toast.makeText(getApplicationContext(),
-//                        error.getMessage(), Toast.LENGTH_LONG).show();
-//                hideDialog();
-//            }
-//        }) {
-//
-//            @Override
-//            protected Map<String, String> getParams() {
-//                // Posting params to register url
-//                Map<String, String> params = new HashMap<String, String>();
-//                //list of parameters to the hash map
-//                params.put("email", email);
-//
-//
-//                return params;
-//            }
-//
-//        };
-//
-//        // Adding request to request queue
-//        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-//    }
-//
+
 
 
 

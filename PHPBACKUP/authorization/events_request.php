@@ -29,7 +29,7 @@ if (isset($_POST['email']) ) {
     } else {
         //Table missing?
         $response["error"] = TRUE;
-        $response["error_msg"] = "There are no frequently asked questions available at the moment :( ";
+        $response["error_msg"] = "Events table missing in DB? :( ";
         echo json_encode($response);
     }
 

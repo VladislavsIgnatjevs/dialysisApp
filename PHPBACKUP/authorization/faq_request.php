@@ -9,7 +9,7 @@ require_once 'include/DB_Functions.php';
 $db = new DB_Functions();   
 $eCounter = 1; 
    
-    $faq_raw = $db->getFaqTest();
+    $faq_raw = $db->getFaq();
     if ($faq_raw != false) {
 		
 		//output error message false and number of faq

@@ -161,32 +161,33 @@
     <!-- Healthcheck check health activity-->
     <string name="healthcheck_heading">Health Check Result:</string>
     <string name="healthcheck_verdict">Passed</string>
-    <string name="healthcheck_details_heading">Check details:</string>
+    <string name="healthcheck_details_heading">Details:</string>
 
     <string name="healthcheck_date_added">Date added:</string>
-    <string name="healthcheck_serum_creatine">Serum creatine:</string>
-    <string name="healthcheck_date_gfr">Glomerular Filtration Rate:</string>
-    <string name="healthcheck_date_bun">Blood Urea Nitrogen:</string>
-    <string name="healthcheck_date_urine_protein">Urine Protein:</string>
-    <string name="healthcheck_date_microalbuminuria">Microalbuminuria:</string>
-    <string name="healthcheck_date_urine_creatinine">Urine Creatinine:</string>
-    <string name="healthcheck_date_serum_albumin">Serum Albumin:</string>
-    <string name="healthcheck_date_serum_npna">nPNA:</string>
-    <string name="healthcheck_date_serum_sga">Subjective Global Assessment:</string>
-    <string name="healthcheck_date_hemoglobin">Hemoglobin:</string>
-    <string name="healthcheck_date_hematocrit">Hematocrit:</string>
-    <string name="healthcheck_date_tsat">TSAT:</string>
-    <string name="healthcheck_date_serum_ferritin">Serum Ferritin:</string>
-    <string name="healthcheck_date_pth">Parathyroid Hormone:</string>
-    <string name="healthcheck_date_calcium">Calcium:</string>
-    <string name="healthcheck_date_phosphorus">Phosphorus:</string>
-    <string name="healthcheck_date_potassium">Potassium:</string>
-    <string name="healthcheck_date_bodyweight">Body weight:</string>
-    <string name="healthcheck_date_blood_pressure">Blood pressure:</string>
-    <string name="healthcheck_date_total_cholesterol">Total Cholesterol:</string>
-    <string name="healthcheck_date_blood_hdl_cholesterol">HDL Cholesterol:</string>
-    <string name="healthcheck_date_blood_ldl_cholesterol">LDL Cholesterol:</string>
-    <string name="healthcheck_date_blood_hdl_triglyceride">Triglyceride:</string>
+    <string name="healthcheck_creative_protein">C-reactive protein:</string>
+    <string name="healthcheck_iron">Iron:</string>
+    <string name="healthcheck_transferrin">Transferrin:</string>
+    <string name="healthcheck_satn_transferrin">% SATN of Transferrin:</string>
+    <string name="healthcheck_phosphate">PhosphateE:</string>
+    <string name="healthcheck_bicarbonate">Bicarbonate:</string>
+    <string name="healthcheck_ferritin">Ferritin:</string>
+    <string name="healthcheck_glucose">Glucose:</string>
+    <string name="healthcheck_magnesium">Magnesium:</string>
+    <string name="healthcheck_sodium">Sodium:</string>
+    <string name="healthcheck_potassium">Potassium:</string>
+    <string name="healthcheck_urea_electrolytes">Urea and Electrolytes</string>
+    <string name="healthcheck_urea">Urea:</string>
+    <string name="healthcheck_creatinine">Creatinine:</string>
+    <string name="healthcheck_lft">Liver Function Tests</string>
+    <string name="healthcheck_alt">ALT:</string>
+    <string name="healthcheck_bilirubins">Bilirubins:</string>
+    <string name="healthcheck_alkaline_phosphatase">Alkaline Phosphatase:</string>
+    <string name="healthcheck_albumin">Albumin:</string>
+    <string name="healthcheck_bone_group">Bone Group</string>
+    <string name="healthcheck_calcium">Calcium:</string>
+    <string name="healthcheck_calcium_corrected">Calcium(corrected):</string>
+    <string name="healthcheck_gfr">Estimated GFR:</string>
+
 
     <string name="healthcheck_date_added_desc">Date when lab results were added</string>
     <string name="healthcheck_serum_creatine_desc">Creatinine is a waste product in your blood that comes from muscle activity. It is normally removed from your blood by your kidneys, but when kidney function slows down, the creatinine level rises. Your doctor should use the results of your serum creatinine test to calculate your GFR.</string>
