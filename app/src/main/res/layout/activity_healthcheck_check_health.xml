@@ -2,7 +2,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="${relativePackage}.${activityClass}" >
+    tools:context="${relativePackage}.${activityClass}"
+    >
 
     <ImageView
         android:layout_width="match_parent"
@@ -15,7 +16,8 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginTop="32dp">
+        android:layout_marginTop="32dp"
+        >
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -44,6 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/healthcheck_verdict"
+                android:id = "@+id/healthcheck_verdict"
                 android:textSize="20dp"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/btn_login_bg"/>
@@ -64,6 +67,8 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
+                android:layout_marginBottom = "30dp"
+
                 android:stretchColumns="*"
                 android:shrinkColumns="*"
                 android:id="@+id/healthcheck_results_table">
@@ -72,6 +77,7 @@
 
                 <TableRow>
                     <TextView
+                        android:id="@+id/healthcheck_date_added_title"
                         android:text="@string/healthcheck_date_added"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -98,6 +104,7 @@
 
                     <TextView
                         android:text="@string/healthcheck_creative_protein"
+                        android:id="@+id/healthcheck_creative_protein_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -121,6 +128,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_iron"
+                        android:id="@+id/healthcheck_iron_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -142,6 +150,7 @@
                 <!-- TRANSFERRIN -->
                 <TableRow>
                     <TextView
+                        android:id="@+id/healthcheck_transferrin_title"
                         android:text="@string/healthcheck_transferrin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -164,6 +173,7 @@
                 <!-- SATN transferrin -->
                 <TableRow>
                     <TextView
+                        android:id="@+id/healthcheck_satn_transferrin_title"
                         android:text="@string/healthcheck_satn_transferrin"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,6 +198,8 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_phosphate"
+                        android:id="@+id/healthcheck_phosphate_title"
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -211,6 +223,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_bicarbonate"
+                        android:id="@+id/healthcheck_bicarbonate_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -234,6 +247,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_ferritin"
+                        android:id="@+id/healthcheck_ferritin_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -257,6 +271,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_glucose"
+                        android:id="@+id/healthcheck_glucose_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -280,6 +295,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_magnesium"
+                        android:id="@+id/healthcheck_magnesium_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -318,6 +334,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_sodium"
+                        android:id="@+id/healthcheck_sodium_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -341,6 +358,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_potassium"
+                        android:id="@+id/healthcheck_potassium_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -364,6 +382,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_urea"
+                        android:id="@+id/healthcheck_urea_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -387,6 +406,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_creatinine"
+                        android:id="@+id/healthcheck_creatinine_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -425,6 +445,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_alt"
+                        android:id="@+id/healthcheck_alt_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -449,6 +470,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_bilirubins"
+                        android:id="@+id/healthcheck_bilirubins_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -472,6 +494,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_alkaline_phosphatase"
+                        android:id="@+id/healthcheck_alkaline_phosphatase_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -495,6 +518,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_albumin"
+                        android:id="@+id/healthcheck_albumin_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -532,6 +556,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_calcium"
+                        android:id="@+id/healthcheck_calcium_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -555,6 +580,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_calcium_corrected"
+                        android:id="@+id/healthcheck_calcium_corrected_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"
@@ -578,6 +604,7 @@
                 <TableRow>
                     <TextView
                         android:text="@string/healthcheck_gfr"
+                        android:id="@+id/healthcheck_gfr_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="10dp"

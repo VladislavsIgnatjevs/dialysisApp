@@ -93,6 +93,9 @@ public class Healthchecks_view_graphs extends Activity {
         calcium_corrected = (TextView) this.findViewById(R.id.healthcheck_calcium_corrected_val);
         est_gfr = (TextView) this.findViewById(R.id.healthcheck_gfr_val);
 
+
+
+
         //get descriptions
 
 
