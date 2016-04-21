@@ -3,10 +3,342 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="vladislavsignatjevs.renaldyalisys.Healthchecks_view_graphs">
 
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/check_action_bar"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="32dp"
+        >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+
+
+
+    <!--heading-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/healthcheck_graphs_title"
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textColor="@color/profile_heading"/>
+
+    <!--heading-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/healthcheck_graphs_heading"
+        android:gravity="center"
+        android:textSize="18dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/profile_left"/>
+
+        <!--c-reactive protein-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_creative_protein"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/creative_protein_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--sodium-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_sodium"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/sodium_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--iron-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_iron"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/iron_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--transferrin-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_transferrin"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/transferrin_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--satn_transferrin-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_satn_transferrin"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/satn_transferrin_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--phosphate-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_phosphate"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/phosphate_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--bicarbonate-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_bicarbonate"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/bicarbonate_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--ferritin-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_ferritin"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/ferritin_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--glucose-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_glucose"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/glucose_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--magnesium-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_magnesium"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/magnesium_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!--urea-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_urea"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/urea_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--potassium-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_potassium"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/potassium_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--creatinine-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_creatinine"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/creatinine_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--alt-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_alt"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/alt_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--bilirubins-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_bilirubins"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/bilirubins_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--alkaline_phosphatase-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_alkaline_phosphatase"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/alkaline_phosphatase_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--albumin-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_albumin"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/albumin_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--calcium-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_calcium"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/calcium_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--calcium_corrected-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_calcium_corrected"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/calcium_corrected_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <!--est_gfr-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/healthcheck_gfr"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/profile_left"/>
+
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/gfr_chart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+
+
+    </LinearLayout>
+    </ScrollView>
 </RelativeLayout>

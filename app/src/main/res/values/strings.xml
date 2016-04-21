@@ -217,7 +217,8 @@ making them healthy red blood cells. </string>
     <string name="healthcheck_calcium_desc">Calcium is a mineral that is important for strong bones. Ask your doctor what your calcium level should be. To help balance the amount of calcium in your blood, your doctor may ask you to take calcium supplements and a special prescription form of vitamin D. Take only the supplements and medications recommended by your doctor.</string>
     <string name="healthcheck_calcium_corrected_desc">Additional confirmatory test for hypercalcemia(ionized calcium level).</string>
 
-
-
+    <!-- Healthcheck view graphs activity-->
+    <string name="healthcheck_graphs_title">Medical history in graphs</string>
+    <string name="healthcheck_graphs_heading">You can see your blood test result history in graphs</string>
 
 </resources>
