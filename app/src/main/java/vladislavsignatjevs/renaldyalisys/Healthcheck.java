@@ -82,7 +82,7 @@ public class Healthcheck extends Activity {
 
         checkHealthButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                // Launching the login activity
+                // Launching  healthCheck
                 Intent intent = new Intent(Healthcheck.this, HealthcheckCheckHealth.class);
                 startActivity(intent);
             }
@@ -90,7 +90,7 @@ public class Healthcheck extends Activity {
 
         viewGraphsButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                // Launching the login activity
+                // Launching graphs
                 Intent intent = new Intent(Healthcheck.this, Healthchecks_view_graphs.class);
                 startActivity(intent);
             }

@@ -693,7 +693,7 @@ public class HealthcheckCheckHealth extends Activity {
 
                         alkaline_phosphataseValue = med_history_map.get("alkaline_phosphatase" + entryCount);
                         if (Double.parseDouble(alkaline_phosphataseValue) > 130 || Double.parseDouble(alkaline_phosphataseValue) < 30)
-                        //bold white with red bg
+                        //bold red
                         {
                             alkaline_phosphatase.setText(alkaline_phosphataseValue + "U/L");
                             alkaline_phosphatase.setTypeface(Typeface.create(alkaline_phosphatase.getTypeface(), Typeface.BOLD));

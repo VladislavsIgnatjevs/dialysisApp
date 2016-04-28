@@ -341,6 +341,7 @@ public class Treatment extends Activity {
     public class CounterClass extends CountDownTimer {
 
         /**
+		 * Author: Noev, Vladislavs Ignatjevs
          * @param millisInFuture    The number of millis in the future from the call
          *                          to {@link #start()} until the countdown is done and {@link #onFinish()}
          *                          is called.
