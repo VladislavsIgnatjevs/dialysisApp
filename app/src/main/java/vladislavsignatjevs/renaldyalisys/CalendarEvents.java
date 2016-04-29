@@ -255,7 +255,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
 //            }
 //        });
 //    }
-
+// (author - roman10)
     private void populateAddBtn2() {
         m_button_add2 = (Button) this.findViewById(R.id.addEvent);
         m_button_add2.setOnClickListener(new View.OnClickListener() {
@@ -293,7 +293,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
     /****************************************************************
      * Data part
      */
-    /*retrieve a list of available calendars*/
+    /*retrieve a list of available calendars (author - roman10)*/
     private MyCalendar m_calendars[];
     private String m_selectedCalendarId = "0";
     int idFormat = 0;
@@ -324,7 +324,7 @@ public class CalendarEvents extends Activity implements OnClickListener {
         }
     }
 
-    /*add an event to calendar*/
+    /*add an event to calendar(author - roman10))*/
     private void addEvent() {
         ContentValues l_event = new ContentValues();
         l_event.put("calendar_id", m_selectedCalendarId);

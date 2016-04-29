@@ -1,7 +1,5 @@
 /**
- * Author: Ravi Tamada
- * URL: www.androidhive.info
- * twitter: http://twitter.com/ravitamada
+ * Authors: Vladislavs Ignatjevs and Ravi Tamada
  */
 package vladislavsignatjevs.renaldyalisys;
 
