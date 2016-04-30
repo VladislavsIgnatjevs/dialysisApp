@@ -168,7 +168,7 @@
     <string name="healthcheck_iron">Iron:</string>
     <string name="healthcheck_transferrin">Transferrin:</string>
     <string name="healthcheck_satn_transferrin">% SATN of Transferrin:</string>
-    <string name="healthcheck_phosphate">PhosphateE:</string>
+    <string name="healthcheck_phosphate">Phosphate:</string>
     <string name="healthcheck_bicarbonate">Bicarbonate:</string>
     <string name="healthcheck_ferritin">Ferritin:</string>
     <string name="healthcheck_glucose">Glucose:</string>
