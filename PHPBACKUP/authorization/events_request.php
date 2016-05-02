@@ -10,16 +10,16 @@ $db = new DB_Functions();
 $eCounter = 1; 
 if (isset($_POST['email']) ) {
        $id= $_POST['email'];
-    $faq_raw = $db->getEvents($id);
-    if ($faq_raw != false) {
+    $events_raw = $db->getEvents($id);
+    if ($events_raw != false) {
 		//output error message false and number of events
         
 	    $response["error"] = FALSE;
 		
-        $faq= $faq_raw;
-		$eCount  = $faq_raw["eCount"];
+        
+		$eCount  = $events_raw["eCount"];
 		//output events data
-		$response["data"]=$faq_raw;
+		$response["data"]=$events_raw;
 	    //encode 
         echo json_encode($response);
 		

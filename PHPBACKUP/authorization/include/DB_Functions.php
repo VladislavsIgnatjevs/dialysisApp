@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @author Ravi Tamada
+ * @author Ravi Tamada & Vladislavs Ignatjevs
  * @link http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/ Complete tutorial
  */
 
@@ -281,8 +281,8 @@ class DB_Functions {
 
         // check for successful store
         if ($result) {
-            $stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ?");
-            $stmt->bind_param("s", $uid);
+            $stmt = $this->conn->prepare("SELECT * FROM events WHERE user_id = ? AND event_name=? AND event_date=? AND event_description=? AND event_startTime =? AND event_endTime=?");
+            $stmt->bind_param("ssssss", $uid, $name, $date, $details, $start, $end);
             $stmt->execute();
             $event = $stmt->get_result()->fetch_assoc();
             $stmt->close();

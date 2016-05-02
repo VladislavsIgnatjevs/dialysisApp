@@ -18,11 +18,11 @@ if (isset($_POST['name']) && isset($_POST['email']) && isset($_POST['password'])
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // check if user is already existed with the same email
+    // check if user is already exists with the same email
     if ($db->isUserExisted($email)) {
-        // user already existed
+        // user already exists
         $response["error"] = TRUE;
-        $response["error_msg"] = "User already existed with " . $email;
+        $response["error_msg"] = "User already exists with " . $email;
         echo json_encode($response);
     } else {
         // create a new user

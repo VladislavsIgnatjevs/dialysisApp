@@ -1,8 +1,8 @@
 <?php
 
-/**
- * @author Ravi Tamada
- * @link http://www.androidhive.info/2012/01/android-login-and-registration-with-php-mysql-and-sqlite/ Complete tutorial
+/**Script to create event
+ * @author Vladislavs Ignatjevs
+ * 
  */
 
 require_once 'include/DB_Functions.php';
@@ -22,9 +22,9 @@ if (isset($_POST['uid']) && isset($_POST['name']) && isset($_POST['details']) &&
 	$end = $_POST['end'];
 
     // create new event
-    $user = $db->createEvent($uid, $name, $details, $date, $start, $end);
+    $event = $db->createEvent($uid, $name, $details, $date, $start, $end);
 
-    if ($user != false) {
+    if ($event != false) {
         // created successfully
         $response["error"] = FALSE;
         echo json_encode($response);

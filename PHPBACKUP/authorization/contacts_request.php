@@ -10,22 +10,16 @@ $db = new DB_Functions();
 $eCounter = 1; 
 if (isset($_POST['email']) ) {
        $id= $_POST['email'];
-    $faq_raw = $db->getEssentialContacts($id);
-    if ($faq_raw != false) {
-		//output error message false
-        
+    $contacts_raw = $db->getEssentialContacts($id);
+    if ($contacts_raw != false) {
+		//output error message false  
 	    $response["error"] = FALSE;
-		
-        $faq= $faq_raw;
-		
 		//output profile data
-		$response["data"]=$faq_raw;
+		$response["data"]=$contacts_raw;
 	    //encode 
         echo json_encode($response);
-		
 	}
-
-
+	
     } else {
         //Table missing?
         $response["error"] = TRUE;
