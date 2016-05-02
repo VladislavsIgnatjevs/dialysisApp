@@ -64,16 +64,16 @@
                 android:text="@string/healthcheck_title"
                 android:textColor="@color/btn_login" />
 
-            <Button
-                android:id="@+id/viewGraphsButton"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dip"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="@color/sky"
-                android:text="@string/healthcheck_test_viewGraphs"
-                android:textColor="@color/btn_login" />
+            <!--<Button-->
+                <!--android:id="@+id/viewGraphsButton"-->
+                <!--android:layout_width="fill_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginTop="10dip"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:layout_marginRight="20dp"-->
+                <!--android:background="@color/sky"-->
+                <!--android:text="@string/healthcheck_test_viewGraphs"-->
+                <!--android:textColor="@color/btn_login" />-->
 
         </LinearLayout>
     </ScrollView>

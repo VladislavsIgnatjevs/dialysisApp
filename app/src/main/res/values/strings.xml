@@ -156,7 +156,7 @@
     <string name="healthcheck_last_check">Last checked:</string>
     <string name="healthcheck_test_history">Lab test history</string>
     <string name="healthcheck_test_viewGraphs">View graphs</string>
-    <string name="healthcheck_test_description">You can check your health by tapping \"Check Health\" or view medical history in graphs by tapping \"View Graphs\"</string>
+    <string name="healthcheck_test_description">You can check your health by tapping \"Check Health\""</string>
 
     <!-- Healthcheck check health activity-->
     <string name="healthcheck_heading">Health Check Result:</string>

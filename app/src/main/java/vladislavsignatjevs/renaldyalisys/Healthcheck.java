@@ -62,7 +62,7 @@ public class Healthcheck extends Activity {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         checkHealthButton = (Button) findViewById(R.id.checkHealthButton);
-        viewGraphsButton = (Button) findViewById(R.id.viewGraphsButton);
+//        viewGraphsButton = (Button) findViewById(R.id.viewGraphsButton);
 
         // SqLite database handler
         db = new SQLiteHandler(getApplicationContext());
@@ -88,13 +88,13 @@ public class Healthcheck extends Activity {
             }
         });
 
-        viewGraphsButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                // Launching graphs
-                Intent intent = new Intent(Healthcheck.this, Healthchecks_view_graphs.class);
-                startActivity(intent);
-            }
-        });
+//        viewGraphsButton.setOnClickListener(new View.OnClickListener() {
+//            public void onClick(View view) {
+//                // Launching graphs
+//                Intent intent = new Intent(Healthcheck.this, Healthchecks_view_graphs.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
        // requestProfile(userData.get("uid"));
